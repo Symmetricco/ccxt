@@ -1,0 +1,120 @@
+{
+  "persona": {
+    "nombre": "Jordi Peguero Guardiola",
+    "posicionamiento": "Director Creativo · Marca y Producto Digital",
+    "lede": "25 años dirigiendo identidad, campaña y producto — hoy centrado en llevar SaaS desde el concepto hasta la interfaz, con IA integrada en el proceso de principio a fin.",
+    "base": "Girona · Barcelona",
+    "disponibilidad": "Remoto · Híbrido",
+    "reconocimiento": "Premio FIAP",
+    "contacto": {
+      "email": "jordi@zascreativelab.com",
+      "linkedin": "linkedin.com/in/jordipeguero",
+      "web": "zascreativelab.com"
+    }
+  },
+  "casos": [
+    {
+      "id": "01",
+      "slug": "becloser",
+      "categoria": "SAAS",
+      "titulo": "BeCloser",
+      "anio": "2026",
+      "rol": "Brand + Product Design",
+      "estado": "En curso",
+      "teaser": "SaaS de IA para automatizar propuestas comerciales. Concepto, marca, design system y co-desarrollo del producto con Claude Code.",
+      "encargo": "Definir un producto que no existía: un SaaS capaz de generar y presentar propuestas comerciales completas usando IA, desde cero — concepto, marca y plataforma a la vez.",
+      "que_hice": "Posicionamiento e identidad visual, diseño del design system en Figma (componentes, tipografía, color, iconografía), arquitectura UX de la plataforma, wireframes y user flows, y diseño de la experiencia del flujo de generación de presupuestos con IA. Co-creación del producto con Claude Code, coordinando la implementación junto a desarrollo full stack externo.",
+      "resultado": "En beta abierta, comercializado a 4.500 € de instalación base más 250 €/mes recurrentes.",
+      "url": "https://www.becloser.io",
+      "imagenes": [],
+      "imagenes_pendientes": true
+    },
+    {
+      "id": "02",
+      "slug": "betlink",
+      "categoria": "SPORTSTECH / WEB3",
+      "titulo": "Betlink",
+      "anio": "2025",
+      "rol": "Concept + Product Design",
+      "estado": "6 meses",
+      "teaser": "Concepto de producto para una plataforma de apuestas deportivas de cola larga, pensada para que los propios creadores de contenido monetizaran su canal.",
+      "encargo": "Dar forma a una idea de producto sin precedente claro: una plataforma descentralizada que combina streaming, apuestas deportivas de cola larga y Web3, donde el propio creador de contenido diseña su canal de apuestas.",
+      "que_hice": "Concepto de producto de principio a fin, naming, identidad de marca y look & feel completo del SaaS. Product design en colaboración continua con desarrollo full stack externo.",
+      "resultado": "Producto y marca desarrollados en su totalidad; el equipo está hoy pivotando por restricciones legales del sector en España.",
+      "url": "https://www.betlinkgo.com",
+      "url_extendida": "https://zascreativelab.com/pextended_betlink",
+      "imagenes": [],
+      "imagenes_pendientes": true
+    },
+    {
+      "id": "03",
+      "slug": "bottle-flip-challenge",
+      "categoria": "PRODUCTO FÍSICO / JUGUETE",
+      "titulo": "Bottle Flip Challenge",
+      "anio": "2015 — 2016",
+      "rol": "Concept to Manufacturing",
+      "estado": "Giochi Preziosi",
+      "teaser": "Un producto propio, de la idea al molde: diseño físico, marca, packaging y campaña, licenciado y producido por uno de los grandes grupos europeos del juguete.",
+      "encargo_origen": "Un producto propio, no un encargo: detecté el fenómeno de lanzar botellas de agua para que aterrizaran de pie, muy extendido en patios de colegio y competiciones deportivas escolares, y vi ahí un producto que no existía todavía.",
+      "que_hice": "Diseño del producto en 3D (forma, medidas, materiales y moldes), desarrollo de marca y packaging, producción en China, sesiones fotográficas y vídeos de campaña, colaboración musical con un youtuber de la época para el himno de la app, estrategia de redes y programa POP en punto de venta. Presenté el proyecto con una propuesta de inversión y ROI a distintas empresas hasta cerrar el acuerdo de producción.",
+      "resultado": "Producido y comercializado por Giochi Preziosi / Toy Partner Barcelona, con app propia disponible en Google Play y App Store. De la idea al lineal, con un actor internacional del sector juguete detrás.",
+      "frase_origen_personal": "La idea nació en el peor año, acompañando a mi hijo al colegio. Vi el gesto repetido en cada patio y decidí construir algo a partir de él.",
+      "frase_origen_estado": "CONFIRMADA por Jordi — se queda en el caso",
+      "nota_confidencial_NO_PUBLICAR": "Hubo un desencuentro con Toy Partner Barcelona por impago de royalties (se cobró producción, no royalties). Este dato no va en ningún material público.",
+      "imagenes": [
+        "assets/bottleflip-render.jpg",
+        "assets/bottleflip-lifestyle-1.jpg",
+        "assets/bottleflip-lifestyle-2.jpg"
+      ],
+      "imagenes_pendientes": false
+    },
+    {
+      "id": "04",
+      "slug": "iris-boessenkool",
+      "categoria": "REAL ESTATE",
+      "titulo": "Iris Boessenkool",
+      "anio": "2025",
+      "rol": "Branding + Web + Funnel",
+      "estado": "3 meses",
+      "teaser": "Branding, web y funnel de captación para una consultora inmobiliaria en la Costa Brava, ejecutados de principio a fin.",
+      "encargo": "Construir la marca y la presencia digital de una consultora inmobiliaria desde cero, incluyendo un sistema de captación de clientes.",
+      "que_hice": "Logotipo y manual de marca, diseño y desarrollo de la web en WordPress, y el funnel de ventas completo.",
+      "resultado": "Marca y web en funcionamiento; la clienta factura en torno a 100.000 € anuales. Hoy revisando el funnel para pivotarlo hacia LinkedIn.",
+      "url": "https://www.irisboessenkool.com",
+      "imagenes": [],
+      "imagenes_pendientes": true
+    },
+    {
+      "id": "05",
+      "slug": "autea",
+      "categoria": "SIN ÁNIMO DE LUCRO",
+      "titulo": "AUTEA",
+      "anio": "Andorra",
+      "rol": "Branding + Comunicación",
+      "estado": "Caso favorito",
+      "teaser": "Identidad y comunicación completa para una organización andorrana de apoyo a familias con hijos con TEA. El trabajo del que más orgulloso estoy en 25 años.",
+      "encargo": "Dar forma a la imagen y la comunicación de AUTEA, a petición de una amiga, madre de una niña con TEA.",
+      "que_hice": "Sistema visual construido sobre ilustración de trazo propio — el mismo que dibujo sin pensar cuando hablo por teléfono — y un concepto narrativo simple: el autismo como un viaje planificado a Italia que aterriza, sin avisar, en Holanda. Al principio no entiendes nada; acabas descubriendo lo maravillosa que es la tierra de los molinos.",
+      "resultado": "Comunicación en uso por la asociación, con un retorno que no se mide en cifras.",
+      "url": "https://www.autea.org/ca/",
+      "imagenes": [],
+      "imagenes_pendientes": true,
+      "nota": "Año exacto del proyecto sin confirmar — pendiente de que Jordi lo precise."
+    },
+    {
+      "id": "06",
+      "slug": "grup-salvador",
+      "categoria": "INDUSTRIA / MULTI-MARCA",
+      "titulo": "Grup Salvador",
+      "anio": "2013 — 2018",
+      "rol": "Multi-brand + Funnels",
+      "estado": "Cliente sostenido",
+      "teaser": "Marca para varias divisiones de un grupo industrial — ingeniería, automoción, seguros, neumáticos, mecánica — más campañas y funnels de venta.",
+      "encargo": "Dar identidad propia a las distintas divisiones de un grupo industrial, incluida Ingeniería Salvador — que trabaja para farmacéuticas como Esteve preparando concursos y presupuestos para la construcción de plantas — y a las divisiones de automóviles, seguros, neumáticos y mecánica.",
+      "que_hice": "Desarrollo de marca para cada división, materiales de comunicación y presupuestos para concursos públicos y privados, y campañas con funnel de ventas en Meta.",
+      "resultado": "Colaboración sostenida a lo largo de varios años con distintas marcas del grupo en producción activa.",
+      "imagenes": [],
+      "imagenes_pendientes": true
+    }
+  ]
+}

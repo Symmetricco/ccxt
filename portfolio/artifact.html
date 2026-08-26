@@ -1,0 +1,1649 @@
+<title>Jordi Peguero</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400..700&display=swap">
+<style>
+/* ============================================================
+   JORDI PEGUERO — PORTFOLIO
+   Sistema: fondo único cálido casi negro, acento ámbar,
+   Archivo (display) / Instrument Sans (cuerpo) / DM Mono (dato).
+   ============================================================ */
+
+*,*::before,*::after{box-sizing:border-box}
+html,body,h1,h2,h3,h4,p,figure,blockquote,dl,dd,ul,ol{margin:0;padding:0}
+ul,ol{list-style:none}
+img,svg,video{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:inherit;text-decoration:none}
+
+:root{
+  /* — tierra — */
+  --ink:        #060403;
+  --ink-raise:  #0D0A08;
+  --ink-edge:   #16110D;
+  --paper:      #EDE7DE;
+  --paper-dim:  #8A817A;
+  --paper-faint:#4A433D;
+  --ember:      #E2932E;
+  --ember-deep: #A8641A;
+  --line:       rgba(237,231,222,.13);
+  --line-soft:  rgba(237,231,222,.07);
+
+  /* — tipo — */
+  --display: 'Archivo', 'Archivo Narrow', 'Helvetica Neue', Arial, sans-serif;
+  --body: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'DM Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* — medida — */
+  --gutter: clamp(1.15rem, 4vw, 4.25rem);
+  --max: 1720px;
+  --chrome: clamp(1.1rem, 2.4vw, 2rem);
+
+  /* — tiempo — */
+  --ease: cubic-bezier(.16,1,.3,1);
+  --ease-io: cubic-bezier(.65,.05,.36,1);
+  --dur: .9s;
+
+  color-scheme: dark;
+}
+
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--body);
+  font-size:clamp(.95rem,.4vw + .85rem,1.06rem);
+  line-height:1.6;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+  text-rendering:optimizeLegibility;
+}
+body.is-locked{overflow:hidden}
+
+::selection{background:var(--ember);color:var(--ink)}
+
+:focus-visible{outline:2px solid var(--ember);outline-offset:4px;border-radius:2px}
+
+/* ---------- primitivas tipográficas ---------- */
+.d{
+  font-family:var(--display);
+  font-weight:800;
+  font-stretch:112%;
+  text-transform:uppercase;
+  line-height:.85;
+  letter-spacing:-.028em;
+  text-wrap:balance;
+}
+.d--xl{font-size:clamp(3rem,12.2vw,12.5rem);line-height:.82;letter-spacing:-.038em}
+.d--l{font-size:clamp(2.1rem,6.4vw,5.6rem);letter-spacing:-.032em}
+.d--m{font-size:clamp(1.5rem,3vw,2.7rem);letter-spacing:-.022em}
+.d--s{font-size:clamp(1.1rem,1.5vw,1.5rem);letter-spacing:-.012em;font-stretch:100%}
+
+.mono{
+  font-family:var(--mono);
+  font-size:.688rem;
+  font-weight:400;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+  line-height:1.4;
+  font-variant-numeric:tabular-nums;
+}
+.dim{color:var(--paper-dim)}
+.faint{color:var(--paper-faint)}
+.ember{color:var(--ember)}
+
+.lede{
+  font-size:clamp(1.02rem,.7vw + .88rem,1.38rem);
+  line-height:1.48;
+  letter-spacing:-.011em;
+  max-width:34ch;
+  color:var(--paper);
+}
+.prose{max-width:60ch;color:var(--paper-dim);line-height:1.68}
+.prose strong{color:var(--paper);font-weight:500}
+
+/* ---------- rejilla ---------- */
+.wrap{
+  width:100%;
+  max-width:var(--max);
+  margin-inline:auto;
+  padding-inline:var(--gutter);
+}
+.sec{position:relative;padding-block:clamp(5.5rem,13vh,10rem)}
+.sec + .sec{border-top:1px solid var(--line-soft)}
+
+.sec-head{
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  gap:clamp(1rem,3vw,2.5rem);
+  align-items:baseline;
+  padding-bottom:clamp(2rem,5vw,3.5rem);
+}
+.sec-head .rule{height:1px;align-self:center;background:var(--line);transform-origin:left;transform:scaleX(0);transition:transform 1.2s var(--ease)}
+.is-in .sec-head .rule,.sec-head.is-in .rule{transform:scaleX(1)}
+
+/* ============================================================
+   GRANO + CURSOR + CROMO
+   ============================================================ */
+.grain{
+  position:fixed;inset:-140%;
+  z-index:9000;pointer-events:none;
+  opacity:.038;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 5.6s steps(8) infinite;
+  will-change:transform;
+}
+@keyframes grain{
+  0%{transform:translate3d(0,0,0)}      12.5%{transform:translate3d(-4%,-3%,0)}
+  25%{transform:translate3d(-7%,2%,0)}  37.5%{transform:translate3d(3%,-5%,0)}
+  50%{transform:translate3d(-2%,6%,0)}  62.5%{transform:translate3d(5%,3%,0)}
+  75%{transform:translate3d(-6%,-2%,0)} 87.5%{transform:translate3d(2%,5%,0)}
+  100%{transform:translate3d(0,0,0)}
+}
+
+.scrim{position:fixed;left:0;right:0;z-index:790;pointer-events:none;height:clamp(62px,9vh,112px)}
+.scrim--t{top:0;background:linear-gradient(180deg,var(--ink) 0%,rgba(6,4,3,.74) 44%,transparent 100%)}
+.scrim--b{bottom:0;background:linear-gradient(0deg,var(--ink) 0%,rgba(6,4,3,.74) 44%,transparent 100%)}
+
+.vignette{
+  position:fixed;inset:0;z-index:8990;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 40%, transparent 42%, rgba(0,0,0,.55) 100%);
+}
+
+.cursor,.cursor-dot{
+  position:fixed;top:0;left:0;z-index:9500;
+  pointer-events:none;border-radius:50%;
+  mix-blend-mode:difference;
+  opacity:0;
+}
+.cursor{
+  width:42px;height:42px;margin:-21px 0 0 -21px;
+  border:1px solid #fff;
+  transition:width .45s var(--ease),height .45s var(--ease),margin .45s var(--ease),opacity .3s linear,background-color .35s var(--ease);
+}
+.cursor-dot{width:5px;height:5px;margin:-2.5px 0 0 -2.5px;background:#fff}
+.cursor.is-active{width:82px;height:82px;margin:-41px 0 0 -41px;background:rgba(255,255,255,.14)}
+.cursor.is-hidden{opacity:0 !important}
+.cursor__label{
+  position:absolute;inset:0;display:grid;place-items:center;
+  font-family:var(--mono);font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;
+  color:#fff;opacity:0;transition:opacity .3s var(--ease);
+}
+.cursor.is-active .cursor__label{opacity:1}
+
+/* cromo de esquinas */
+.chrome{
+  position:fixed;inset:0;z-index:800;pointer-events:none;
+  padding:var(--chrome);
+  display:grid;
+  grid-template-columns:1fr auto;
+  grid-template-rows:auto 1fr auto;
+  gap:1rem;
+  mix-blend-mode:normal;
+}
+.chrome > *{pointer-events:auto}
+.chrome__tl{grid-column:1;grid-row:1;display:flex;align-items:center;gap:.7rem}
+.chrome__tr{grid-column:2;grid-row:1;display:flex;align-items:center;gap:clamp(.8rem,2vw,1.8rem)}
+.chrome__bl{grid-column:1;grid-row:3;display:flex;align-items:center;gap:.8rem}
+.chrome__br{grid-column:2;grid-row:3;display:flex;align-items:center;gap:.8rem}
+
+.mark{font-family:var(--display);font-weight:800;font-stretch:118%;text-transform:uppercase;font-size:.83rem;letter-spacing:-.01em;line-height:1}
+.mark span{color:var(--paper-dim);font-weight:600}
+
+.dot{
+  width:6px;height:6px;border-radius:50%;background:var(--ember);
+  box-shadow:0 0 0 0 rgba(226,147,46,.65);
+  animation:pulse 2.6s var(--ease-io) infinite;
+  flex:none;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(226,147,46,.55)}
+  70%{box-shadow:0 0 0 9px rgba(226,147,46,0)}
+  100%{box-shadow:0 0 0 0 rgba(226,147,46,0)}
+}
+
+.navlink{position:relative;padding-block:.25rem}
+.navlink::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:currentColor;transform:scaleX(0);transform-origin:right;
+  transition:transform .5s var(--ease);
+}
+.navlink:hover::after,.navlink:focus-visible::after{transform:scaleX(1);transform-origin:left}
+.navlink[aria-current="true"]{color:var(--ember)}
+
+.progress{
+  position:relative;width:clamp(48px,8vw,96px);height:1px;background:var(--line);overflow:hidden;
+}
+.progress i{position:absolute;inset:0;background:var(--ember);transform:scaleX(0);transform-origin:left}
+
+@media (max-width:760px){
+  .chrome{padding:.85rem}
+  .chrome__tr .navlink{display:none}
+  .chrome__bl .sep,.chrome__bl .loc{display:none}
+  .mark span{display:none}
+}
+
+/* ============================================================
+   PRELOADER
+   ============================================================ */
+.loader{
+  position:fixed;inset:0;z-index:9800;
+  background:var(--ink);
+  display:grid;
+  grid-template-rows:1fr auto;
+  padding:var(--chrome);
+  transition:transform 1.15s var(--ease),visibility 0s linear 1.15s;
+}
+.loader.is-done{transform:translate3d(0,-101%,0);visibility:hidden}
+.loader__mid{display:grid;place-items:center;overflow:hidden}
+.loader__name{overflow:hidden}
+.loader__name span{
+  display:block;
+  font-family:var(--display);font-weight:800;font-stretch:120%;
+  text-transform:uppercase;font-size:clamp(1.6rem,7vw,4.6rem);
+  letter-spacing:-.035em;line-height:1;
+  transform:translate3d(0,105%,0);
+  transition:transform 1s var(--ease) .1s;
+}
+.loader.is-ready .loader__name span{transform:none}
+.loader__bot{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem}
+.loader__count{
+  font-family:var(--mono);font-variant-numeric:tabular-nums;
+  font-size:clamp(2.4rem,9vw,6rem);line-height:.9;letter-spacing:-.04em;
+}
+.loader__bar{position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--line)}
+.loader__bar i{display:block;height:100%;width:0;background:var(--ember)}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  min-height:100svh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding-top:clamp(7rem,18vh,12rem);
+  padding-bottom:clamp(5rem,11vh,7.5rem);
+  overflow:hidden;
+}
+.hero__glow{
+  position:absolute;left:50%;top:42%;translate:-50% -50%;
+  width:min(130vw,1500px);aspect-ratio:1.6/1;
+  background:radial-gradient(ellipse at center, rgba(226,147,46,.14), rgba(226,147,46,.045) 38%, transparent 68%);
+  filter:blur(28px);pointer-events:none;z-index:0;
+}
+.hero > .wrap{position:relative;z-index:1;width:100%}
+
+.hero__eyebrow{
+  display:flex;flex-wrap:wrap;gap:.6rem clamp(1rem,3vw,2.4rem);
+  align-items:center;
+  padding-bottom:clamp(1.4rem,3.5vw,2.6rem);
+  border-bottom:1px solid var(--line);
+  margin-bottom:clamp(1.6rem,4vw,3rem);
+}
+.hero__title{margin-bottom:clamp(2rem,5vw,3.4rem)}
+.hero__title .ln{display:block;overflow:hidden}
+.hero__title .ln > span{display:block;transform:translate3d(0,102%,0)}
+
+.hero__foot{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:clamp(1.6rem,4vw,3rem);
+  align-items:end;
+}
+@media (min-width:900px){
+  .hero__foot{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(2rem,6vw,6rem)}
+}
+.facts{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1px;
+  background:var(--line);
+  border-block:1px solid var(--line);
+}
+@media (min-width:560px){.facts{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.fact{background:var(--ink);padding:.95rem 0 1.05rem;padding-right:.7rem}
+.fact dt{margin-bottom:.4rem}
+.fact dd{font-family:var(--display);font-weight:700;font-stretch:105%;font-size:.94rem;letter-spacing:-.01em;text-transform:uppercase;line-height:1.15}
+
+.scrollcue{
+  display:inline-flex;align-items:center;gap:.6rem;margin-top:clamp(2rem,5vw,3rem);
+}
+.scrollcue i{
+  display:block;width:1px;height:38px;background:linear-gradient(var(--ember),transparent);
+  animation:cue 2.2s var(--ease-io) infinite;transform-origin:top;
+}
+@keyframes cue{0%{transform:scaleY(0);opacity:0}35%{opacity:1}100%{transform:scaleY(1);opacity:0}}
+
+/* ============================================================
+   TICKER
+   ============================================================ */
+.ticker{
+  position:relative;
+  border-block:1px solid var(--line);
+  padding-block:clamp(.9rem,2vw,1.35rem);
+  overflow:hidden;
+  background:var(--ink-raise);
+}
+.ticker__row{display:flex;width:max-content;will-change:transform}
+.ticker__row > span{
+  display:inline-flex;align-items:center;gap:clamp(1.4rem,3vw,2.6rem);
+  padding-right:clamp(1.4rem,3vw,2.6rem);
+  font-family:var(--display);font-weight:700;font-stretch:108%;
+  text-transform:uppercase;letter-spacing:-.015em;
+  font-size:clamp(1.1rem,2.5vw,2rem);
+  white-space:nowrap;
+}
+.ticker__row b{color:var(--ember);font-weight:700}
+.ticker em{font-style:normal;color:var(--paper-faint)}
+
+/* ============================================================
+   MANIFIESTO — revelado palabra a palabra ligado al scroll
+   ============================================================ */
+.manifest{padding-block:clamp(6rem,20vh,14rem)}
+.manifest__body{
+  font-family:var(--display);
+  font-weight:600;font-stretch:104%;
+  font-size:clamp(1.5rem,4.1vw,3.5rem);
+  line-height:1.14;letter-spacing:-.028em;
+  text-transform:none;
+  max-width:20ch;
+}
+@media (min-width:900px){.manifest__body{max-width:17ch}}
+.manifest__body w{display:inline-block;opacity:.13;transition:opacity .35s linear}
+.manifest__body w.on{opacity:1}
+.manifest__body w.key.on{color:var(--ember)}
+.manifest__foot{
+  display:grid;gap:clamp(1.4rem,3vw,2rem);
+  margin-top:clamp(2.6rem,6vw,4.5rem);
+  padding-top:clamp(1.4rem,3vw,2rem);
+  border-top:1px solid var(--line);
+  grid-template-columns:1fr;
+}
+@media (min-width:820px){.manifest__foot{grid-template-columns:auto minmax(0,52ch);gap:clamp(2rem,6vw,6rem)}}
+
+/* ============================================================
+   ÍNDICE DE TRABAJO
+   ============================================================ */
+.work{position:relative}
+.index{border-top:1px solid var(--line)}
+
+.row{
+  position:relative;display:block;width:100%;text-align:left;
+  border-bottom:1px solid var(--line);
+  padding-block:clamp(1.25rem,2.6vw,2.1rem);
+  overflow:hidden;
+  transition:background-color .55s var(--ease);
+  isolation:isolate;
+}
+.row::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(90deg, rgba(226,147,46,.11), rgba(226,147,46,0) 62%);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .75s var(--ease);
+}
+.row:hover::before,.row:focus-visible::before{transform:scaleX(1)}
+
+.row__in{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:baseline;
+  gap:clamp(.7rem,2.4vw,2rem);
+}
+.row__num,.row__title{transition:transform .75s var(--ease),color .5s var(--ease)}
+.row:hover .row__num,.row:hover .row__title{transform:translate3d(clamp(.4rem,1.2vw,1.4rem),0,0)}
+
+.row__num{color:var(--paper-faint);align-self:center}
+.row:hover .row__num{color:var(--ember)}
+.row__title{
+  font-family:var(--display);font-weight:800;font-stretch:110%;
+  text-transform:uppercase;letter-spacing:-.03em;line-height:.95;
+  font-size:clamp(1.75rem,5.6vw,4.4rem);
+}
+.row__meta{display:none}
+@media (min-width:900px){
+  .row__meta{display:flex;align-items:center;gap:clamp(1rem,2.4vw,2.2rem);justify-self:end;white-space:nowrap}
+}
+.row__cat{color:var(--paper-dim)}
+.row__year{color:var(--paper-dim);min-width:6ch;text-align:right}
+.row__go{
+  display:grid;place-items:center;width:34px;height:34px;flex:none;
+  border:1px solid var(--line);border-radius:50%;
+  transition:background-color .5s var(--ease),border-color .5s var(--ease),transform .6s var(--ease),color .5s var(--ease);
+}
+.row:hover .row__go{background:var(--ember);border-color:var(--ember);color:var(--ink);transform:rotate(45deg)}
+.row__sub{
+  display:block;color:var(--paper-dim);font-size:.9rem;line-height:1.5;
+  max-width:56ch;margin-top:.7rem;
+}
+@media (min-width:900px){
+  .row__sub{
+    max-width:44ch;margin-top:.55rem;
+    opacity:0;transform:translate3d(0,-6px,0);
+    max-height:0;overflow:hidden;
+    transition:opacity .55s var(--ease),transform .7s var(--ease),max-height .7s var(--ease);
+  }
+  .row:hover .row__sub,.row:focus-visible .row__sub{opacity:1;transform:none;max-height:6rem}
+}
+.row__tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.7rem}
+@media (min-width:900px){.row__tags{display:none}}
+.tag{border:1px solid var(--line);padding:.2rem .55rem;border-radius:100px;color:var(--paper-dim)}
+
+/* placa flotante que sigue al cursor */
+.peek{
+  position:fixed;top:0;left:0;z-index:700;
+  width:clamp(230px,20vw,340px);aspect-ratio:4/5;
+  margin:-1px 0 0 -1px;
+  pointer-events:none;opacity:0;
+  transform:translate3d(-50%,-50%,0) scale(.86);
+  transition:opacity .45s var(--ease);
+  overflow:hidden;will-change:transform;
+}
+.peek.on{opacity:1}
+@media (max-width:899px),(pointer:coarse){.peek{display:none}}
+
+/* ---------- placas generadas por caso ---------- */
+.plate{
+  position:relative;width:100%;height:100%;overflow:hidden;
+  background:var(--ink-raise);
+  border:1px solid var(--line);
+  display:grid;align-content:end;
+  padding:clamp(.9rem,1.5vw,1.4rem);
+  isolation:isolate;
+}
+.plate::before,.plate::after{content:"";position:absolute;inset:0;z-index:-1}
+.plate__label{
+  font-family:var(--display);font-weight:800;font-stretch:114%;text-transform:uppercase;
+  font-size:clamp(1.1rem,1.7vw,1.7rem);letter-spacing:-.03em;line-height:.92;
+  mix-blend-mode:difference;color:#fff;
+}
+.plate__idx{position:absolute;top:clamp(.9rem,1.5vw,1.4rem);left:clamp(.9rem,1.5vw,1.4rem);color:rgba(237,231,222,.6);z-index:1}
+/* soporte para foto real: <div class="plate" style="--img:url(...)"> */
+.plate[style*="--img"]::after{
+  background-image:var(--img);background-size:cover;background-position:center;
+  opacity:1;mix-blend-mode:normal;
+}
+
+/* 01 becloser — anillos concéntricos, señal */
+.plate--becloser::before{
+  background:
+    repeating-radial-gradient(circle at 62% 34%, rgba(226,147,46,.42) 0 1px, transparent 1px 13px),
+    radial-gradient(circle at 62% 34%, rgba(226,147,46,.22), transparent 58%),
+    linear-gradient(160deg,#0E0B08,#060403);
+}
+.plate--becloser::after{
+  background:radial-gradient(circle at 62% 34%, rgba(226,147,46,.5) 0 2px, transparent 2px);
+}
+/* 02 betlink — rejilla diagonal + corte cromático */
+.plate--betlink::before{
+  background:
+    repeating-linear-gradient(58deg, rgba(237,231,222,.16) 0 1px, transparent 1px 16px),
+    repeating-linear-gradient(-58deg, rgba(226,147,46,.14) 0 1px, transparent 1px 22px),
+    linear-gradient(200deg,#0B0A0C,#060403);
+}
+.plate--betlink::after{
+  background:linear-gradient(105deg, transparent 44%, rgba(226,147,46,.3) 44% 46%, transparent 46%);
+}
+/* 03 bottle flip — arcos de giro */
+.plate--bottle-flip-challenge::before{
+  background:
+    repeating-conic-gradient(from 210deg at 50% 78%, rgba(237,231,222,.11) 0 3deg, transparent 3deg 15deg),
+    radial-gradient(ellipse at 50% 96%, rgba(226,147,46,.34), transparent 62%),
+    linear-gradient(180deg,#0A0806,#060403);
+}
+.plate--bottle-flip-challenge::after{
+  background:radial-gradient(ellipse 16% 26% at 50% 52%, rgba(237,231,222,.5), rgba(237,231,222,.06) 60%, transparent 72%);
+}
+/* 04 iris — bandas de horizonte */
+.plate--iris-boessenkool::before{
+  background:linear-gradient(178deg,#0A0908 0 38%, rgba(226,147,46,.3) 38% 39%, #0C0907 39% 63%, rgba(237,231,222,.14) 63% 63.6%, #060403 63.6%);
+}
+.plate--iris-boessenkool::after{
+  background:linear-gradient(90deg, transparent 78%, rgba(237,231,222,.09) 78% 78.4%, transparent 78.4%);
+}
+/* 05 autea — trazo continuo (motivo real del proyecto) */
+.plate--autea::before{background:linear-gradient(200deg,#0C0A09,#060403)}
+.plate--autea svg{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.plate--autea svg path{
+  fill:none;stroke:var(--ember);stroke-width:1.4;stroke-linecap:round;
+  stroke-dasharray:1400;stroke-dashoffset:1400;
+}
+.peek.on .plate--autea svg path,.sheet.is-open .plate--autea svg path{animation:draw 2.4s var(--ease) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+/* 06 grup salvador — trama industrial */
+.plate--grup-salvador::before{
+  background:
+    repeating-linear-gradient(90deg, rgba(237,231,222,.13) 0 2px, transparent 2px 11px),
+    linear-gradient(180deg,#0B0A09,#060403);
+}
+.plate--grup-salvador::after{
+  background:repeating-linear-gradient(0deg, rgba(226,147,46,.16) 0 1px, transparent 1px 34px);
+}
+
+/* archivo de casos: indexable e imprimible, invisible en pantalla */
+.archive{position:absolute;left:0;top:0;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);opacity:0;pointer-events:none}
+
+/* ============================================================
+   FICHA DE CASO (overlay)
+   ============================================================ */
+.sheet{
+  position:fixed;inset:0;z-index:9200;
+  background:var(--ink);
+  visibility:hidden;
+  transform:translate3d(0,100%,0);
+  transition:transform 1s var(--ease),visibility 0s linear 1s;
+  overflow:hidden;
+}
+.sheet.is-open{visibility:visible;transform:none;transition:transform 1s var(--ease),visibility 0s}
+.sheet__scroll{height:100%;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.sheet__bar{
+  position:sticky;top:0;z-index:3;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:var(--chrome);
+  background:linear-gradient(var(--ink) 62%, transparent);
+}
+.close{
+  display:inline-flex;align-items:center;gap:.6rem;
+  border:1px solid var(--line);border-radius:100px;
+  padding:.5rem .95rem .5rem .8rem;
+  transition:border-color .5s var(--ease),background-color .5s var(--ease),color .5s var(--ease);
+}
+.close:hover{background:var(--paper);border-color:var(--paper);color:var(--ink)}
+.close svg{width:11px;height:11px;transition:transform .6s var(--ease)}
+.close:hover svg{transform:rotate(90deg)}
+
+.sheet__hero{padding-bottom:clamp(2rem,5vw,3.5rem);border-bottom:1px solid var(--line)}
+.sheet__kicker{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;align-items:center;margin-bottom:clamp(1rem,2.5vw,1.6rem)}
+.sheet__title{margin-bottom:clamp(1.2rem,3vw,2rem)}
+.sheet__grid{
+  display:grid;grid-template-columns:1fr;gap:clamp(1.6rem,4vw,3rem);
+  padding-block:clamp(2.2rem,5vw,4rem);
+}
+@media (min-width:940px){
+  .sheet__grid{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(2.5rem,7vw,7rem)}
+}
+.sheet__plate{aspect-ratio:4/5;max-height:74vh}
+@media (max-width:939px){.sheet__plate{aspect-ratio:16/10;max-height:none}}
+
+.spec{display:grid;gap:clamp(1.6rem,3.5vw,2.6rem)}
+.spec__item{display:grid;grid-template-columns:1fr;gap:.55rem;padding-top:1.1rem;border-top:1px solid var(--line)}
+@media (min-width:620px){
+  .spec__item{grid-template-columns:8.5rem minmax(0,1fr);gap:0 clamp(1rem,3vw,2.4rem)}
+  .spec__item dt{padding-top:.28rem}
+}
+.spec__item dd{color:var(--paper);line-height:1.62;max-width:58ch}
+.spec__item dd.dim{color:var(--paper-dim)}
+
+.pull{
+  margin-block:clamp(1.6rem,4vw,2.6rem);
+  padding:clamp(1.2rem,2.6vw,2rem) 0 clamp(1.2rem,2.6vw,2rem) clamp(1.1rem,2.4vw,1.8rem);
+  border-left:2px solid var(--ember);
+  font-family:var(--display);font-weight:600;font-stretch:102%;
+  font-size:clamp(1.12rem,1.9vw,1.62rem);line-height:1.3;letter-spacing:-.02em;
+  max-width:44ch;
+}
+.pull cite{display:block;margin-top:.9rem;font-style:normal}
+
+.outlink{
+  display:inline-flex;align-items:center;gap:.7rem;
+  border-bottom:1px solid var(--line);padding-bottom:.35rem;
+  transition:border-color .5s var(--ease),color .5s var(--ease),gap .5s var(--ease);
+}
+.outlink:hover{color:var(--ember);border-color:var(--ember);gap:1.1rem}
+.outlink svg{width:11px;height:11px}
+
+.sheet__nav{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding-block:clamp(1.5rem,3vw,2.2rem);
+  border-top:1px solid var(--line);
+}
+.sheet__nav button{display:inline-flex;align-items:center;gap:.7rem;transition:color .4s var(--ease)}
+.sheet__nav button:hover{color:var(--ember)}
+.sheet__nav button:disabled{color:var(--paper-faint);cursor:default}
+
+/* ============================================================
+   RECORRIDO — raíl horizontal scrubbeado
+   ============================================================ */
+.track{position:relative;padding-block:0}
+.track .rail__head{padding-top:clamp(4.5rem,11vh,8rem)}
+.rail{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;grid-template-rows:auto minmax(0,1fr) auto}
+.rail__mid{align-self:center;display:grid;gap:clamp(1.5rem,4vh,2.8rem);min-width:0}
+.rail__head{padding:0 var(--gutter) clamp(1.4rem,3vw,2.4rem);display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.rail__line{position:relative;height:1px;background:var(--line);margin-inline:var(--gutter)}
+.rail__line i{position:absolute;inset:0;background:var(--ember);transform-origin:left;transform:scaleX(0)}
+.rail__strip{display:flex;align-items:flex-start;align-self:center;will-change:transform;padding-inline:var(--gutter);gap:0}
+.stop{
+  flex:none;width:min(78vw,420px);
+  padding:clamp(1.6rem,3vw,2.4rem) clamp(1.2rem,2.4vw,2rem) 0 0;
+  margin-right:clamp(1.2rem,2.4vw,2rem);
+  border-top:1px solid var(--line);
+  position:relative;
+  opacity:.32;transition:opacity .6s var(--ease);
+}
+.stop.near{opacity:1}
+.stop::before{
+  content:"";position:absolute;top:-1px;left:0;width:0;height:1px;background:var(--ember);
+  transition:width .8s var(--ease);
+}
+.stop.near::before{width:2.6rem}
+.stop__yr{display:block;margin-bottom:.9rem;color:var(--ember)}
+.stop__ttl{margin-bottom:.8rem;font-family:var(--display);font-weight:700;font-stretch:106%;text-transform:uppercase;font-size:clamp(1.02rem,1.5vw,1.4rem);letter-spacing:-.02em;line-height:1.08}
+.stop__txt{color:var(--paper-dim);font-size:.9rem;line-height:1.58}
+.rail__foot{padding:0 var(--gutter) clamp(2.6rem,6vh,4.2rem);display:flex;align-items:flex-end;justify-content:space-between;gap:1rem}
+
+/* fallback vertical si no hay scrub (móvil estrecho) */
+@media (max-width:640px){
+  .rail{position:static;height:auto;display:block}
+  .rail__mid{display:block}
+  .rail__strip{display:grid;grid-template-columns:1fr;transform:none !important;gap:0;padding-inline:0}
+  .stop{width:auto;opacity:1;margin-right:0;padding-right:0}
+  .stop::before{width:2.6rem}
+  .rail__line,.rail__foot{display:none}
+  .track{height:auto !important}
+  .rail__head{padding-inline:0}
+}
+
+/* ============================================================
+   CAPACIDADES
+   ============================================================ */
+.caps{border-top:1px solid var(--line)}
+.cap{
+  border-bottom:1px solid var(--line);
+  display:grid;grid-template-columns:auto 1fr;
+  gap:clamp(.8rem,2.4vw,2rem);
+  align-items:start;
+  padding-block:clamp(1.3rem,2.6vw,2rem);
+  transition:padding-left .6s var(--ease);
+}
+.cap:hover{padding-left:clamp(.4rem,1.2vw,1.2rem)}
+.cap__n{color:var(--paper-faint);padding-top:.45rem}
+.cap__b{display:grid;gap:.6rem}
+@media (min-width:900px){
+  .cap__b{grid-template-columns:minmax(0,.62fr) minmax(0,1fr);gap:clamp(1.5rem,4vw,4rem);align-items:baseline}
+}
+.cap__t{font-family:var(--display);font-weight:700;font-stretch:108%;text-transform:uppercase;font-size:clamp(1.2rem,2.6vw,2.1rem);letter-spacing:-.026em;line-height:1}
+.cap__d{color:var(--paper-dim);font-size:.94rem;line-height:1.6;max-width:60ch}
+.cap__d b{color:var(--paper);font-weight:500}
+
+/* ============================================================
+   CONTACTO
+   ============================================================ */
+.contact{padding-block:clamp(5rem,14vh,10rem) clamp(3rem,7vh,5rem)}
+.contact__big{display:inline-block;position:relative}
+.contact__big .d--xl{transition:transform .8s var(--ease)}
+.contact__big:hover .d--xl{transform:translate3d(0,-.04em,0)}
+.contact__big::after{
+  content:"";position:absolute;left:0;right:0;bottom:.04em;height:clamp(2px,.4vw,5px);background:var(--ember);
+  transform:scaleX(0);transform-origin:right;transition:transform .85s var(--ease);
+}
+.contact__big:hover::after{transform:scaleX(1);transform-origin:left}
+
+.contact__grid{
+  display:grid;grid-template-columns:1fr;gap:clamp(1.6rem,4vw,3rem);
+  margin-top:clamp(2.4rem,6vw,4.5rem);
+  padding-top:clamp(1.5rem,3vw,2.2rem);
+  border-top:1px solid var(--line);
+}
+@media (min-width:760px){.contact__grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.contact__cell{display:grid;gap:.55rem;align-content:start}
+.contact__cell a{
+  font-family:var(--display);font-weight:600;font-stretch:104%;
+  font-size:clamp(.98rem,1.3vw,1.18rem);letter-spacing:-.015em;
+  display:inline-block;width:fit-content;position:relative;
+}
+.contact__cell a::after{
+  content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:right;transition:transform .55s var(--ease);
+}
+.contact__cell a:hover{color:var(--ember)}
+.contact__cell a:hover::after{transform:scaleX(1);transform-origin:left}
+
+.foot{
+  border-top:1px solid var(--line);
+  padding-block:clamp(1.2rem,2.6vw,1.8rem);
+  display:flex;flex-wrap:wrap;gap:.8rem clamp(1rem,3vw,2.4rem);
+  align-items:center;justify-content:space-between;
+}
+
+/* ============================================================
+   ANIMACIÓN DE ENTRADA (IntersectionObserver)
+   ============================================================ */
+.rv > *{opacity:0;transform:translate3d(0,26px,0)}
+.rv.is-in > *{opacity:1;transform:none;transition:opacity .95s var(--ease),transform 1.05s var(--ease)}
+.rv.is-in > *:nth-child(1){transition-delay:.02s}
+.rv.is-in > *:nth-child(2){transition-delay:.09s}
+.rv.is-in > *:nth-child(3){transition-delay:.16s}
+.rv.is-in > *:nth-child(4){transition-delay:.23s}
+.rv.is-in > *:nth-child(5){transition-delay:.3s}
+.rv.is-in > *:nth-child(6){transition-delay:.37s}
+
+.rv-self{opacity:0;transform:translate3d(0,26px,0)}
+.rv-self.is-in{opacity:1;transform:none;transition:opacity .95s var(--ease),transform 1.05s var(--ease)}
+
+.ln-mask{overflow:hidden;display:block}
+.ln-mask > span{display:block;transform:translate3d(0,102%,0);transition:transform 1.05s var(--ease)}
+.is-in .ln-mask > span{transform:none}
+.is-in .ln-mask:nth-child(2) > span{transition-delay:.07s}
+.is-in .ln-mask:nth-child(3) > span{transition-delay:.14s}
+.is-in .ln-mask:nth-child(4) > span{transition-delay:.21s}
+
+.row{opacity:0;transform:translate3d(0,22px,0);transition:opacity .8s var(--ease),transform .9s var(--ease),background-color .55s var(--ease)}
+.row.is-in{opacity:1;transform:none}
+
+/* ============================================================
+   MOVIMIENTO REDUCIDO
+   ============================================================ */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;scroll-behavior:auto !important;
+  }
+  .rv > *,.rv-self,.row{opacity:1 !important;transform:none !important}
+  .ln-mask > span,.hero__title .ln > span,.loader__name span{transform:none !important}
+  .manifest__body w{opacity:1 !important}
+  .grain,.cursor,.cursor-dot,.peek{display:none !important}
+  .rail{position:static;height:auto}
+  .rail__strip{transform:none !important;flex-wrap:wrap}
+  .stop{opacity:1}
+  .track{height:auto !important}
+}
+
+/* ============================================================
+   IMPRESIÓN — el mismo contenido, como CV de 2 páginas
+   ============================================================ */
+@media print{
+  @page{size:A4;margin:16mm 15mm}
+  *{background:transparent !important;box-shadow:none !important;text-shadow:none !important}
+  html,body{background:#fff !important;color:#111 !important;font-size:9.6pt;line-height:1.42}
+  /* el texto claro de pantalla tiene que volverse tinta sobre papel */
+  .lede,.d,.row__title,.cap__t,.stop__ttl,.manifest__body,.manifest__body w,
+  .spec__item dd,.prose strong,.contact__cell a,.fact dd,.pull,.mark,.outlink{color:#111 !important}
+  .facts{border-block:.4pt solid #bbb;gap:0}
+  .fact{border-right:.4pt solid #ddd;padding:1.5mm 3mm 1.5mm 0}
+  .fact dd{font-size:9pt}
+  .row__meta{gap:0 5mm}
+  .row__in{gap:0 4mm}
+  .grain,.vignette,.scrim,.cursor,.cursor-dot,.peek,.chrome,.loader,.ticker,.scrollcue,.hero__glow,.row__go,.sheet__bar,.sheet__nav,.rail__line,.rail__foot,.plate,.sheet__plate{display:none !important}
+  .sec{padding-block:0 5mm;border:0}
+  .sec + .sec{border-top:.4pt solid #bbb;padding-top:4mm}
+  .wrap{padding:0;max-width:none}
+  .hero{min-height:0;padding:0 0 6mm;display:block}
+  .d--xl{font-size:26pt;line-height:.92}
+  .d--l{font-size:15pt}
+  .d--m{font-size:12pt}
+  .lede{font-size:10.5pt;max-width:none}
+  .mono{font-size:7pt;letter-spacing:.09em;color:#555}
+  .dim,.faint,.prose,.cap__d,.stop__txt,.row__sub,.spec__item dd.dim{color:#444 !important}
+  .ember,.stop__yr,.row__num{color:#8a5a12 !important}
+  .rv > *,.rv-self,.row,.ln-mask > span,.hero__title .ln > span{opacity:1 !important;transform:none !important}
+  .manifest{padding-block:0 6mm}
+  .manifest__body{font-size:12pt;max-width:none;line-height:1.3}
+  .manifest__body w{opacity:1 !important;color:inherit !important}
+  .row{page-break-inside:avoid;padding-block:2mm;border-bottom:.4pt solid #ccc}
+  .row__title{font-size:14pt}
+  .row__sub{opacity:1 !important;max-height:none !important;transform:none !important;max-width:none}
+  .row__meta{display:flex !important}
+  .sheet{display:none !important}
+  .archive{position:static;width:auto;height:auto;clip-path:none;opacity:1;overflow:visible;pointer-events:auto;page-break-before:always}
+  #trabajo .row__sub,#trabajo .row__tags{display:none !important}
+  .archive .case{page-break-inside:avoid;padding-top:4mm}
+  .archive .sheet__hero{border-bottom:.4pt solid #bbb;padding-bottom:2.5mm}
+  .archive .sheet__title{font-size:15pt;margin-bottom:1.5mm}
+  .archive .sheet__kicker{gap:0 4mm;margin-bottom:1.5mm}
+  .archive .lede{font-size:9.6pt;line-height:1.35}
+  .archive .spec{gap:2mm}
+  .archive .spec__item dd{max-width:none}
+  .archive .outlink{border:0;padding:0}
+  .sheet__grid{display:block;padding-block:0}
+  .spec__item{page-break-inside:avoid;border-top:.4pt solid #ccc;padding-top:1.5mm;gap:0 6mm;grid-template-columns:24mm minmax(0,1fr)}
+  .pull{border-left:1.2pt solid #8a5a12;font-size:10pt}
+  .rail{position:static;height:auto;display:block}
+  .rail__mid{display:block}
+  .rail__strip{display:block;padding:0}
+  .stop{width:auto;opacity:1 !important;margin:0;padding:2.5mm 0 0;page-break-inside:avoid;border-top:.4pt solid #ccc}
+  .cap{page-break-inside:avoid;padding-block:2.5mm}
+  .contact{padding-block:4mm 0}
+  .contact__big .d--xl{font-size:20pt}
+  a[href^="http"]::after,a[href^="mailto"]::after{content:" (" attr(href) ")";font-family:var(--mono);font-size:6.6pt;color:#666;word-break:break-all}
+  .navlink::after,.contact__cell a::after,.contact__big::after{display:none}
+}
+</style>
+
+<!-- ══ PRELOADER ══ -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__mid">
+    <div class="loader__name"><span>Jordi Peguero</span></div>
+  </div>
+  <div class="loader__bot">
+    <p class="mono dim">Director Creativo<br>Marca y Producto Digital</p>
+    <p class="loader__count" id="count">000</p>
+  </div>
+  <div class="loader__bar"><i id="bar"></i></div>
+</div>
+
+<!-- ══ ATMÓSFERA ══ -->
+<div class="grain" aria-hidden="true"></div>
+<div class="scrim scrim--t" aria-hidden="true"></div>
+<div class="scrim scrim--b" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__label" id="cursorLabel"></span></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="peek" id="peek" aria-hidden="true"></div>
+
+<!-- ══ CROMO ══ -->
+<div class="chrome" aria-hidden="false">
+  <div class="chrome__tl">
+    <a href="#top" class="mark" data-cursor="Inicio">Jordi Peguero <span>· Director Creativo</span></a>
+  </div>
+  <nav class="chrome__tr" aria-label="Secciones">
+    <a class="mono navlink" href="#trabajo">Trabajo</a>
+    <a class="mono navlink" href="#recorrido">Recorrido</a>
+    <a class="mono navlink" href="#contacto">Contacto</a>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="mono">Disponible</span>
+  </nav>
+  <div class="chrome__bl">
+    <span class="mono dim loc">Girona · Barcelona</span>
+    <span class="mono faint sep" aria-hidden="true">/</span>
+    <span class="mono dim" id="clock">--:--:--</span>
+  </div>
+  <div class="chrome__br">
+    <span class="mono faint" id="pct">00</span>
+    <span class="progress" aria-hidden="true"><i id="pbar"></i></span>
+  </div>
+</div>
+
+<main id="top">
+
+<!-- ══ HERO ══ -->
+<header class="hero">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero__eyebrow">
+      <span class="mono">Jordi Peguero Guardiola</span>
+      <span class="mono dim">Director Creativo · Marca y Producto Digital</span>
+      <span class="mono faint" style="margin-left:auto">Est. 1995</span>
+    </div>
+
+    <h1 class="d d--xl hero__title" id="heroTitle">
+      <span class="ln"><span>Del concepto</span></span>
+      <span class="ln"><span>a la <em class="ember" style="font-style:normal">interfaz</em></span></span>
+    </h1>
+
+    <div class="hero__foot">
+      <p class="lede rv-self">25 años dirigiendo identidad, campaña y producto — hoy centrado en llevar SaaS desde el concepto hasta la interfaz, con IA integrada en el proceso de principio a fin.</p>
+
+      <dl class="facts rv-self">
+        <div class="fact"><dt class="mono faint">Base</dt><dd>Girona · Barcelona</dd></div>
+        <div class="fact"><dt class="mono faint">Modalidad</dt><dd>Remoto · Híbrido</dd></div>
+        <div class="fact"><dt class="mono faint">Reconocimiento</dt><dd>Premio FIAP</dd></div>
+        <div class="fact"><dt class="mono faint">Oficio</dt><dd>25 años</dd></div>
+      </dl>
+    </div>
+
+    <a class="scrollcue mono dim" href="#trabajo" data-cursor="Bajar"><i aria-hidden="true"></i>Seis casos</a>
+  </div>
+</header>
+
+<!-- ══ TICKER ══ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__row" id="ticker">
+    <span><em>—</em> Marca e identidad <em>—</em> Producto digital <em>—</em> <b>Design system</b> <em>—</em> IA en el proceso <em>—</em> Producto físico <em>—</em> <b>Campaña y funnel</b> </span>
+    <span><em>—</em> Marca e identidad <em>—</em> Producto digital <em>—</em> <b>Design system</b> <em>—</em> IA en el proceso <em>—</em> Producto físico <em>—</em> <b>Campaña y funnel</b> </span>
+  </div>
+</div>
+
+<!-- ══ MANIFIESTO ══ -->
+<section class="sec manifest" id="acerca">
+  <div class="wrap">
+    <p class="manifest__body" id="manifest">Llevo veinticinco años dirigiendo marca, campaña y producto. Hoy trabajo sobre un solo eje: llevar un SaaS del concepto a la interfaz, con IA integrada en el proceso de principio a fin. Diseño la identidad, el sistema y la pantalla — y me quedo con quien lo construye hasta que funciona. Busco incorporarme a un equipo que necesite esa figura dentro, no facturar un proyecto desde fuera.</p>
+
+    <div class="manifest__foot">
+      <p class="mono faint">Acerca de<br>—<br>001</p>
+      <p class="prose">Empecé como director de arte en 1995. Fundé y dirigí <strong>Axó Comunicació</strong> en Andorra durante once años —1,5 M€ de facturación anual sostenida, Premio FIAP— y la vendí en 2011 para montar estudio propio. Desde entonces he hecho marca para grupos industriales, un juguete propio que llegó al lineal europeo y, en los últimos años, producto digital de principio a fin. Trabajo desde Girona y Barcelona, en remoto o híbrido.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TRABAJO ══ -->
+<section class="sec work" id="trabajo">
+  <div class="wrap">
+    <div class="sec-head rv-self">
+      <h2 class="mono">Trabajo seleccionado</h2>
+      <span class="rule" aria-hidden="true"></span>
+      <span class="mono faint" style="grid-column:3">006</span>
+    </div>
+
+    <div class="index" id="index">
+
+      <button class="row" data-case="0" data-cursor="Abrir">
+        <span class="row__in">
+          <span class="mono row__num">01</span>
+          <span class="row__title">BeCloser</span>
+          <span class="row__meta">
+            <span class="mono row__cat">SaaS</span>
+            <span class="mono faint">Brand + Product Design</span>
+            <span class="mono row__year">2026</span>
+            <span class="row__go" aria-hidden="true">
+              <svg viewBox="0 0 12 12" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 6h8M6 2v8"/></svg>
+            </span>
+          </span>
+        </span>
+        <span class="row__sub">SaaS de IA para automatizar propuestas comerciales. Concepto, marca, design system y co-desarrollo del producto con Claude Code.</span>
+        <span class="row__tags"><span class="mono tag">SaaS</span><span class="mono tag">2026</span><span class="mono tag">En curso</span></span>
+      </button>
+
+      <button class="row" data-case="1" data-cursor="Abrir">
+        <span class="row__in">
+          <span class="mono row__num">02</span>
+          <span class="row__title">Betlink</span>
+          <span class="row__meta">
+            <span class="mono row__cat">Sportstech / Web3</span>
+            <span class="mono faint">Concept + Product Design</span>
+            <span class="mono row__year">2025</span>
+            <span class="row__go" aria-hidden="true">
+              <svg viewBox="0 0 12 12" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 6h8M6 2v8"/></svg>
+            </span>
+          </span>
+        </span>
+        <span class="row__sub">Concepto de producto para una plataforma de apuestas deportivas de cola larga, pensada para que los propios creadores de contenido monetizaran su canal.</span>
+        <span class="row__tags"><span class="mono tag">Sportstech</span><span class="mono tag">2025</span><span class="mono tag">6 meses</span></span>
+      </button>
+
+      <button class="row" data-case="2" data-cursor="Abrir">
+        <span class="row__in">
+          <span class="mono row__num">03</span>
+          <span class="row__title">Bottle Flip Challenge</span>
+          <span class="row__meta">
+            <span class="mono row__cat">Producto físico</span>
+            <span class="mono faint">Concept to Manufacturing</span>
+            <span class="mono row__year">2015 — 16</span>
+            <span class="row__go" aria-hidden="true">
+              <svg viewBox="0 0 12 12" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 6h8M6 2v8"/></svg>
+            </span>
+          </span>
+        </span>
+        <span class="row__sub">Un producto propio, de la idea al molde: diseño físico, marca, packaging y campaña, licenciado y producido por uno de los grandes grupos europeos del juguete.</span>
+        <span class="row__tags"><span class="mono tag">Juguete</span><span class="mono tag">2015 — 16</span><span class="mono tag">Giochi Preziosi</span></span>
+      </button>
+
+      <button class="row" data-case="3" data-cursor="Abrir">
+        <span class="row__in">
+          <span class="mono row__num">04</span>
+          <span class="row__title">Iris Boessenkool</span>
+          <span class="row__meta">
+            <span class="mono row__cat">Real Estate</span>
+            <span class="mono faint">Branding + Web + Funnel</span>
+            <span class="mono row__year">2025</span>
+            <span class="row__go" aria-hidden="true">
+              <svg viewBox="0 0 12 12" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 6h8M6 2v8"/></svg>
+            </span>
+          </span>
+        </span>
+        <span class="row__sub">Branding, web y funnel de captación para una consultora inmobiliaria en la Costa Brava, ejecutados de principio a fin.</span>
+        <span class="row__tags"><span class="mono tag">Real Estate</span><span class="mono tag">2025</span><span class="mono tag">3 meses</span></span>
+      </button>
+
+      <button class="row" data-case="4" data-cursor="Abrir">
+        <span class="row__in">
+          <span class="mono row__num">05</span>
+          <span class="row__title">AUTEA</span>
+          <span class="row__meta">
+            <span class="mono row__cat">Sin ánimo de lucro</span>
+            <span class="mono faint">Branding + Comunicación</span>
+            <span class="mono row__year">Andorra</span>
+            <span class="row__go" aria-hidden="true">
+              <svg viewBox="0 0 12 12" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 6h8M6 2v8"/></svg>
+            </span>
+          </span>
+        </span>
+        <span class="row__sub">Identidad y comunicación completa para una organización andorrana de apoyo a familias con hijos con TEA. El trabajo del que más orgulloso estoy en 25 años.</span>
+        <span class="row__tags"><span class="mono tag">No lucrativo</span><span class="mono tag">Andorra</span><span class="mono tag">Caso favorito</span></span>
+      </button>
+
+      <button class="row" data-case="5" data-cursor="Abrir">
+        <span class="row__in">
+          <span class="mono row__num">06</span>
+          <span class="row__title">Grup Salvador</span>
+          <span class="row__meta">
+            <span class="mono row__cat">Industria / Multi-marca</span>
+            <span class="mono faint">Multi-brand + Funnels</span>
+            <span class="mono row__year">2013 — 18</span>
+            <span class="row__go" aria-hidden="true">
+              <svg viewBox="0 0 12 12" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 6h8M6 2v8"/></svg>
+            </span>
+          </span>
+        </span>
+        <span class="row__sub">Marca para varias divisiones de un grupo industrial — ingeniería, automoción, seguros, neumáticos, mecánica — más campañas y funnels de venta.</span>
+        <span class="row__tags"><span class="mono tag">Industria</span><span class="mono tag">2013 — 18</span><span class="mono tag">Cliente sostenido</span></span>
+      </button>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ RECORRIDO ══ -->
+<section class="sec track" id="recorrido">
+  <div class="rail">
+    <div class="rail__head">
+      <h2 class="mono">Recorrido</h2>
+      <span class="mono faint">1995 → 2026</span>
+    </div>
+
+    <div class="rail__mid">
+    <div class="rail__line" aria-hidden="true"><i id="railFill"></i></div>
+
+    <ol class="rail__strip" id="strip">
+      <li class="stop">
+        <span class="mono stop__yr">1995 — 1999</span>
+        <h3 class="stop__ttl">Director de Arte — IMAGINA</h3>
+        <p class="stop__txt">Dirección de arte y diseño gráfico para campañas publicitarias e identidad de marca. La base del oficio.</p>
+      </li>
+      <li class="stop">
+        <span class="mono stop__yr">2000 — 2011</span>
+        <h3 class="stop__ttl">Director Creativo — Axó Comunicació</h3>
+        <p class="stop__txt">Fundé y dirigí una agencia de servicios plenos en Andorra, referente en su mercado, con una facturación sostenida de 1,5 M€ anuales. Premio FIAP por «Cupido», para Gala Perfumerías.</p>
+      </li>
+      <li class="stop">
+        <span class="mono stop__yr">2011</span>
+        <h3 class="stop__ttl">Fundo Zas Creative Lab</h3>
+        <p class="stop__txt">Vendo Axó y arranco estudio propio.</p>
+      </li>
+      <li class="stop">
+        <span class="mono stop__yr">2013 — 2018</span>
+        <h3 class="stop__ttl">Cuidado familiar, y trabajo en paralelo</h3>
+        <p class="stop__txt">Años marcados por el cuidado y la pérdida de mi mujer. En paralelo, mantuve colaboración con Grup Salvador y lancé Bottle Flip Challenge con Giochi Preziosi (2015–2016) — un producto propio, de la idea al lineal.</p>
+      </li>
+      <li class="stop">
+        <span class="mono stop__yr">2020</span>
+        <h3 class="stop__ttl">Conozco a Víctor Hernández</h3>
+        <p class="stop__txt">A través de BitRush, un emprendimiento de un tercero. Empieza una colaboración técnica que sigue hoy.</p>
+      </li>
+      <li class="stop">
+        <span class="mono stop__yr">2021</span>
+        <h3 class="stop__ttl">Symmetric Co.</h3>
+        <p class="stop__txt">Concepto, marca y diseño de producto para una plataforma de trading con criptoactivos, junto a Víctor.</p>
+      </li>
+      <li class="stop">
+        <span class="mono stop__yr">2025 — 26</span>
+        <h3 class="stop__ttl">Iris Boessenkool, Betlink, BeCloser</h3>
+        <p class="stop__txt">Tres proyectos que fijan el eje actual: marca, producto digital e IA integrada en el proceso, de principio a fin.</p>
+      </li>
+    </ol>
+    </div>
+
+    <div class="rail__foot">
+      <span class="mono dim">Desplaza para avanzar</span>
+      <span class="mono dim"><span id="stopNow">01</span> / 07</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CAPACIDADES ══ -->
+<section class="sec" id="capacidades">
+  <div class="wrap">
+    <div class="sec-head rv-self">
+      <h2 class="mono">Qué hago</h2>
+      <span class="rule" aria-hidden="true"></span>
+      <span class="mono faint">006</span>
+    </div>
+
+    <div class="caps">
+      <div class="cap rv-self">
+        <span class="mono cap__n">01</span>
+        <div class="cap__b">
+          <h3 class="cap__t">Marca e identidad</h3>
+          <p class="cap__d">Naming, sistema visual, manual de marca y aplicación. De una división industrial a una consultora inmobiliaria o una asociación — <b>Grup Salvador, Iris Boessenkool, AUTEA, Betlink</b>.</p>
+        </div>
+      </div>
+      <div class="cap rv-self">
+        <span class="mono cap__n">02</span>
+        <div class="cap__b">
+          <h3 class="cap__t">Producto digital</h3>
+          <p class="cap__d">Arquitectura UX, wireframes, user flows y diseño de interfaz para SaaS. Trabajo en contacto continuo con desarrollo full stack hasta que la pantalla existe — <b>BeCloser, Betlink</b>.</p>
+        </div>
+      </div>
+      <div class="cap rv-self">
+        <span class="mono cap__n">03</span>
+        <div class="cap__b">
+          <h3 class="cap__t">Design system</h3>
+          <p class="cap__d">Componentes, tipografía, color e iconografía en Figma, montados para que un equipo pueda construir encima sin volver a preguntar.</p>
+        </div>
+      </div>
+      <div class="cap rv-self">
+        <span class="mono cap__n">04</span>
+        <div class="cap__b">
+          <h3 class="cap__t">IA en el proceso</h3>
+          <p class="cap__d">Co-creación de producto con <b>Claude Code</b>, del concepto al código, coordinando la implementación con desarrollo externo. No es una herramienta al final del proceso: está de principio a fin.</p>
+        </div>
+      </div>
+      <div class="cap rv-self">
+        <span class="mono cap__n">05</span>
+        <div class="cap__b">
+          <h3 class="cap__t">Producto físico</h3>
+          <p class="cap__d">Diseño en 3D, medidas, materiales y moldes, packaging, producción en fábrica y campaña. De la idea al lineal, con un actor internacional del juguete detrás — <b>Bottle Flip Challenge</b>.</p>
+        </div>
+      </div>
+      <div class="cap rv-self">
+        <span class="mono cap__n">06</span>
+        <div class="cap__b">
+          <h3 class="cap__t">Campaña y funnel</h3>
+          <p class="cap__d">Concepto de campaña, producción audiovisual y fotográfica, funnels de venta en Meta y programa POP en punto de venta.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACTO ══ -->
+<section class="sec contact" id="contacto">
+  <div class="wrap">
+    <div class="sec-head rv-self">
+      <h2 class="mono">Contacto</h2>
+      <span class="rule" aria-hidden="true"></span>
+      <span class="mono ember">Disponible</span>
+    </div>
+
+    <a class="contact__big" href="mailto:jordi@zascreativelab.com" data-cursor="Escribir" data-magnet>
+      <span class="d d--xl">Hablemos</span>
+    </a>
+
+    <div class="contact__grid">
+      <div class="contact__cell rv-self">
+        <span class="mono faint">Email</span>
+        <a href="mailto:jordi@zascreativelab.com">jordi@zascreativelab.com</a>
+      </div>
+      <div class="contact__cell rv-self">
+        <span class="mono faint">LinkedIn</span>
+        <a href="https://linkedin.com/in/jordipeguero" target="_blank" rel="noopener">linkedin.com/in/jordipeguero</a>
+      </div>
+      <div class="contact__cell rv-self">
+        <span class="mono faint">Estudio</span>
+        <a href="https://zascreativelab.com" target="_blank" rel="noopener">zascreativelab.com</a>
+      </div>
+    </div>
+
+    <div class="foot">
+      <span class="mono faint">© 2026 Jordi Peguero Guardiola</span>
+      <span class="mono faint">Girona · Barcelona · Remoto o híbrido</span>
+      <button class="mono navlink" id="printBtn" data-cursor="PDF">Guardar como PDF</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══ FICHA DE CASO ══ -->
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Ficha de caso" aria-hidden="true">
+  <div class="sheet__scroll" id="sheetScroll">
+    <div class="sheet__bar">
+      <span class="mono faint" id="sheetIdx">01 / 06</span>
+      <button class="close mono" id="sheetClose" data-cursor="Cerrar">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 2l8 8M10 2l-8 8"/></svg>
+        Cerrar
+      </button>
+    </div>
+    <div class="wrap" id="sheetBody"></div>
+    <div class="wrap">
+      <div class="sheet__nav">
+        <button class="mono" id="prevCase">← Anterior</button>
+        <button class="mono" id="nextCase">Siguiente →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CONTENIDO DE LOS CASOS ══
+     Vive en el DOM (indexable y imprimible); el overlay lo clona al abrir.
+     Para poner una foto real, añade style="--img:url('assets/x.jpg')" al .plate.
+-->
+<div class="archive" id="archive" aria-hidden="true">
+
+  <article class="case" data-slug="becloser">
+    <div class="sheet__hero">
+      <div class="sheet__kicker">
+        <span class="mono ember">01</span><span class="mono dim">SaaS</span>
+        <span class="mono dim">2026</span><span class="mono dim">En curso</span>
+      </div>
+      <h2 class="d d--l sheet__title">BeCloser</h2>
+      <p class="lede">SaaS de IA para automatizar propuestas comerciales. Concepto, marca, design system y co-desarrollo del producto con Claude Code.</p>
+    </div>
+    <div class="sheet__grid">
+      <div class="sheet__plate"><div class="plate plate--becloser"><span class="mono plate__idx">01 / Key visual</span><span class="plate__label">BeCloser</span></div></div>
+      <div>
+        <dl class="spec">
+          <div class="spec__item"><dt class="mono dim">Encargo</dt><dd>Definir un producto que no existía: un SaaS capaz de generar y presentar propuestas comerciales completas usando IA, desde cero — concepto, marca y plataforma a la vez.</dd></div>
+          <div class="spec__item"><dt class="mono dim">Qué hice</dt><dd>Posicionamiento e identidad visual, diseño del design system en Figma (componentes, tipografía, color, iconografía), arquitectura UX de la plataforma, wireframes y user flows, y diseño de la experiencia del flujo de generación de presupuestos con IA. Co-creación del producto con Claude Code, coordinando la implementación junto a desarrollo full stack externo.</dd></div>
+          <div class="spec__item"><dt class="mono dim">Resultado</dt><dd>En beta abierta, comercializado a 4.500 € de instalación base más 250 €/mes recurrentes.</dd></div>
+          <div class="spec__item"><dt class="mono dim">Rol</dt><dd class="dim">Brand + Product Design</dd></div>
+        </dl>
+        <p style="margin-top:2rem"><a class="outlink mono" href="https://www.becloser.io" target="_blank" rel="noopener">becloser.io <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 9l6-6M4 3h5v5"/></svg></a></p>
+      </div>
+    </div>
+  </article>
+
+  <article class="case" data-slug="betlink">
+    <div class="sheet__hero">
+      <div class="sheet__kicker">
+        <span class="mono ember">02</span><span class="mono dim">Sportstech / Web3</span>
+        <span class="mono dim">2025</span><span class="mono dim">6 meses</span>
+      </div>
+      <h2 class="d d--l sheet__title">Betlink</h2>
+      <p class="lede">Concepto de producto para una plataforma de apuestas deportivas de cola larga, pensada para que los propios creadores de contenido monetizaran su canal.</p>
+    </div>
+    <div class="sheet__grid">
+      <div class="sheet__plate"><div class="plate plate--betlink"><span class="mono plate__idx">02 / Key visual</span><span class="plate__label">Betlink</span></div></div>
+      <div>
+        <dl class="spec">
+          <div class="spec__item"><dt class="mono dim">Encargo</dt><dd>Dar forma a una idea de producto sin precedente claro: una plataforma descentralizada que combina streaming, apuestas deportivas de cola larga y Web3, donde el propio creador de contenido diseña su canal de apuestas.</dd></div>
+          <div class="spec__item"><dt class="mono dim">Qué hice</dt><dd>Concepto de producto de principio a fin, naming, identidad de marca y look &amp; feel completo del SaaS. Product design en colaboración continua con desarrollo full stack externo.</dd></div>
+          <div class="spec__item"><dt class="mono dim">Resultado</dt><dd>Producto y marca desarrollados en su totalidad; el equipo está hoy pivotando por restricciones legales del sector en España.</dd></div>
+          <div class="spec__item"><dt class="mono dim">Rol</dt><dd class="dim">Concept + Product Design</dd></div>
+        </dl>
+        <p style="margin-top:2rem;display:flex;flex-wrap:wrap;gap:1rem 2rem">
+          <a class="outlink mono" href="https://www.betlinkgo.com" target="_blank" rel="noopener">betlinkgo.com <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 9l6-6M4 3h5v5"/></svg></a>
+          <a class="outlink mono" href="https://zascreativelab.com/pextended_betlink" target="_blank" rel="noopener">Caso extendido <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 9l6-6M4 3h5v5"/></svg></a>
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <article class="case" data-slug="bottle-flip-challenge">
+    <div class="sheet__hero">
+      <div class="sheet__kicker">
+        <span class="mono ember">03</span><span class="mono dim">Producto físico / Juguete</span>
+        <span class="mono dim">2015 — 2016</span><span class="mono dim">Giochi Preziosi</span>
+      </div>
+      <h2 class="d d--l sheet__title">Bottle Flip Challenge</h2>
+      <p class="lede">Un producto propio, de la idea al molde: diseño físico, marca, packaging y campaña, licenciado y producido por uno de los grandes grupos europeos del juguete.</p>
+    </div>
+    <div class="sheet__grid">
+      <div class="sheet__plate"><div class="plate plate--bottle-flip-challenge"><span class="mono plate__idx">03 / Key visual</span><span class="plate__label">Bottle Flip<br>Challenge</span></div></div>
+      <div>
+        <dl class="spec">
+          <div class="spec__item"><dt class="mono dim">Origen</dt><dd>Un producto propio, no un encargo: detecté el fenómeno de lanzar botellas de agua para que aterrizaran de pie, muy extendido en patios de colegio y competiciones deportivas escolares, y vi ahí un producto que no existía todavía.</dd></div>
+          <div class="spec__item"><dt class="mono dim">Qué hice</dt><dd>Diseño del producto en 3D (forma, medidas, materiales y moldes), desarrollo de marca y packaging, producción en China, sesiones fotográficas y vídeos de campaña, colaboración musical con un youtuber de la época para el himno de la app, estrategia de redes y programa POP en punto de venta. Presenté el proyecto con una propuesta de inversión y ROI a distintas empresas hasta cerrar el acuerdo de producción.</dd></div>
+          <div class="spec__item"><dt class="mono dim">Resultado</dt><dd>Producido y comercializado por Giochi Preziosi / Toy Partner Barcelona, con app propia disponible en Google Play y App Store. De la idea al lineal, con un actor internacional del sector juguete detrás.</dd></div>
+          <div class="spec__item"><dt class="mono dim">Rol</dt><dd class="dim">Concept to Manufacturing</dd></div>
+        </dl>
+        <blockquote class="pull">“La idea nació en el peor año, acompañando a mi hijo al colegio. Vi el gesto repetido en cada patio y decidí construir algo a partir de él.”<cite class="mono faint">Jordi Peguero</cite></blockquote>
+      </div>
+    </div>
+  </article>
+
+  <article class="case" data-slug="iris-boessenkool">
+    <div class="sheet__hero">
+      <div class="sheet__kicker">
+        <span class="mono ember">04</span><span class="mono dim">Real Estate</span>
+        <span class="mono dim">2025</span><span class="mono dim">3 meses</span>
+      </div>
+      <h2 class="d d--l sheet__title">Iris Boessenkool</h2>
+      <p class="lede">Branding, web y funnel de captación para una consultora inmobiliaria en la Costa Brava, ejecutados de principio a fin.</p>
+    </div>
+    <div class="sheet__grid">
+      <div class="sheet__plate"><div class="plate plate--iris-boessenkool"><span class="mono plate__idx">04 / Key visual</span><span class="plate__label">Iris<br>Boessenkool</span></div></div>
+      <div>
+        <dl class="spec">
+          <div class="spec__item"><dt class="mono dim">Encargo</dt><dd>Construir la marca y la presencia digital de una consultora inmobiliaria desde cero, incluyendo un sistema de captación de clientes.</dd></div>
+          <div class="spec__item"><dt class="mono dim">Qué hice</dt><dd>Logotipo y manual de marca, diseño y desarrollo de la web en WordPress, y el funnel de ventas completo.</dd></div>
+          <div class="spec__item"><dt class="mono dim">Resultado</dt><dd>Marca y web en funcionamiento; la clienta factura en torno a 100.000 € anuales. Hoy revisando el funnel para pivotarlo hacia LinkedIn.</dd></div>
+          <div class="spec__item"><dt class="mono dim">Rol</dt><dd class="dim">Branding + Web + Funnel</dd></div>
+        </dl>
+        <p style="margin-top:2rem"><a class="outlink mono" href="https://www.irisboessenkool.com" target="_blank" rel="noopener">irisboessenkool.com <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 9l6-6M4 3h5v5"/></svg></a></p>
+      </div>
+    </div>
+  </article>
+
+  <article class="case" data-slug="autea">
+    <div class="sheet__hero">
+      <div class="sheet__kicker">
+        <span class="mono ember">05</span><span class="mono dim">Sin ánimo de lucro</span>
+        <span class="mono dim">Andorra</span><span class="mono dim">Caso favorito</span>
+      </div>
+      <h2 class="d d--l sheet__title">AUTEA</h2>
+      <p class="lede">Identidad y comunicación completa para una organización andorrana de apoyo a familias con hijos con TEA. El trabajo del que más orgulloso estoy en 25 años.</p>
+    </div>
+    <div class="sheet__grid">
+      <div class="sheet__plate"><div class="plate plate--autea">
+        <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M40 400c40-70 10-150 70-190s120 30 150-30 20-110 70-120"/><path d="M70 430c50-40 40-120 110-140s110 40 140-20"/></svg>
+        <span class="mono plate__idx">05 / Key visual</span><span class="plate__label">AUTEA</span>
+      </div></div>
+      <div>
+        <dl class="spec">
+          <div class="spec__item"><dt class="mono dim">Encargo</dt><dd>Dar forma a la imagen y la comunicación de AUTEA, a petición de una amiga, madre de una niña con TEA.</dd></div>
+          <div class="spec__item"><dt class="mono dim">Qué hice</dt><dd>Sistema visual construido sobre ilustración de trazo propio — el mismo que dibujo sin pensar cuando hablo por teléfono — y un concepto narrativo simple: el autismo como un viaje planificado a Italia que aterriza, sin avisar, en Holanda. Al principio no entiendes nada; acabas descubriendo lo maravillosa que es la tierra de los molinos.</dd></div>
+          <div class="spec__item"><dt class="mono dim">Resultado</dt><dd>Comunicación en uso por la asociación, con un retorno que no se mide en cifras.</dd></div>
+          <div class="spec__item"><dt class="mono dim">Rol</dt><dd class="dim">Branding + Comunicación</dd></div>
+        </dl>
+        <p style="margin-top:2rem"><a class="outlink mono" href="https://www.autea.org/ca/" target="_blank" rel="noopener">autea.org <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 9l6-6M4 3h5v5"/></svg></a></p>
+      </div>
+    </div>
+  </article>
+
+  <article class="case" data-slug="grup-salvador">
+    <div class="sheet__hero">
+      <div class="sheet__kicker">
+        <span class="mono ember">06</span><span class="mono dim">Industria / Multi-marca</span>
+        <span class="mono dim">2013 — 2018</span><span class="mono dim">Cliente sostenido</span>
+      </div>
+      <h2 class="d d--l sheet__title">Grup Salvador</h2>
+      <p class="lede">Marca para varias divisiones de un grupo industrial — ingeniería, automoción, seguros, neumáticos, mecánica — más campañas y funnels de venta.</p>
+    </div>
+    <div class="sheet__grid">
+      <div class="sheet__plate"><div class="plate plate--grup-salvador"><span class="mono plate__idx">06 / Key visual</span><span class="plate__label">Grup<br>Salvador</span></div></div>
+      <div>
+        <dl class="spec">
+          <div class="spec__item"><dt class="mono dim">Encargo</dt><dd>Dar identidad propia a las distintas divisiones de un grupo industrial, incluida Ingeniería Salvador — que trabaja para farmacéuticas como Esteve preparando concursos y presupuestos para la construcción de plantas — y a las divisiones de automóviles, seguros, neumáticos y mecánica.</dd></div>
+          <div class="spec__item"><dt class="mono dim">Qué hice</dt><dd>Desarrollo de marca para cada división, materiales de comunicación y presupuestos para concursos públicos y privados, y campañas con funnel de ventas en Meta.</dd></div>
+          <div class="spec__item"><dt class="mono dim">Resultado</dt><dd>Colaboración sostenida a lo largo de varios años con distintas marcas del grupo en producción activa.</dd></div>
+          <div class="spec__item"><dt class="mono dim">Rol</dt><dd class="dim">Multi-brand + Funnels</dd></div>
+        </dl>
+      </div>
+    </div>
+  </article>
+
+</div>
+
+<noscript><style>
+  .loader{display:none}
+  .rv > *,.rv-self,.row{opacity:1 !important;transform:none !important}
+  .ln-mask > span,.hero__title .ln > span{transform:none !important}
+  .row__sub{opacity:1 !important;max-height:none !important;transform:none !important}
+  .cursor,.cursor-dot,.peek{display:none}
+  .rail{position:static;height:auto}.track{height:auto}
+  .rail__strip{flex-wrap:wrap}.stop{opacity:1}
+  .archive{position:static !important;width:auto !important;height:auto !important;clip-path:none !important;opacity:1 !important;overflow:visible !important}
+  .archive .case{border-top:1px solid var(--line);padding-block:2rem}
+</style></noscript>
+
+<script>
+(() => {
+  'use strict';
+  const doc = document;
+  const $  = (s, c = doc) => c.querySelector(s);
+  const $$ = (s, c = doc) => Array.from(c.querySelectorAll(s));
+  const clamp = (v, a = 0, b = 1) => v < a ? a : v > b ? b : v;
+  const lerp  = (a, b, t) => a + (b - a) * t;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine   = matchMedia('(pointer: fine)').matches;
+
+  let vh = innerHeight, vw = innerWidth;
+
+  /* ────────────────────────────────── 1. PRELOADER */
+  const loader = $('#loader'), count = $('#count'), bar = $('#bar');
+  function bootReveal() {
+    doc.body.classList.remove('is-locked');
+    $$('#heroTitle .ln > span').forEach((s, i) => {
+      s.style.transition = 'transform 1.15s var(--ease) ' + (i * .085 + .05) + 's';
+      s.style.transform = 'none';
+    });
+  }
+  if (reduce) {
+    loader.remove(); bootReveal();
+  } else {
+    doc.body.classList.add('is-locked');
+    loader.classList.add('is-ready');
+    const t0 = performance.now(), span = 1500;
+    (function tick(now) {
+      const p = clamp((now - t0) / span);
+      const eased = 1 - Math.pow(1 - p, 3);
+      count.textContent = String(Math.round(eased * 100)).padStart(3, '0');
+      bar.style.width = (eased * 100) + '%';
+      if (p < 1) requestAnimationFrame(tick);
+      else setTimeout(() => { loader.classList.add('is-done'); bootReveal(); }, 220);
+    })(t0);
+  }
+
+  /* ────────────────────────────────── 2. RELOJ LOCAL */
+  const clock = $('#clock');
+  const fmt = new Intl.DateTimeFormat('es-ES', {
+    timeZone: 'Europe/Madrid', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+  });
+  const beat = () => { clock.textContent = fmt.format(new Date()); };
+  beat(); setInterval(beat, 1000);
+
+  /* ────────────────────────────────── 3. REVELADOS */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('is-in');
+      io.unobserve(e.target);
+    });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: .08 });
+  $$('.rv, .rv-self, .row, .sec-head').forEach(el => io.observe(el));
+
+  /* ────────────────────────────────── 4. MANIFIESTO palabra a palabra */
+  const man = $('#manifest');
+  const KEY = ['concepto', 'interfaz', 'incorporarme'];
+  const words = [];
+  {
+    const raw = man.textContent.trim().split(/\s+/);
+    man.textContent = '';
+    raw.forEach((word, i) => {
+      const w = doc.createElement('w');
+      w.textContent = word;
+      const bare = word.toLowerCase().replace(/[^a-záéíóúñ]/g, '');
+      if (KEY.includes(bare)) w.classList.add('key');
+      man.appendChild(w);
+      if (i < raw.length - 1) man.appendChild(doc.createTextNode(' '));
+      words.push(w);
+    });
+  }
+  let lastLit = -1;
+  function paintManifest() {
+    const r = man.getBoundingClientRect();
+    const p = clamp((vh * .82 - r.top) / (r.height + vh * .42));
+    const lit = Math.round(p * words.length);
+    if (lit === lastLit) return;
+    const from = Math.min(lastLit, lit), to = Math.max(lastLit, lit);
+    for (let i = Math.max(0, from); i <= to && i < words.length; i++) {
+      words[i].classList.toggle('on', i < lit);
+    }
+    lastLit = lit;
+  }
+
+  /* ────────────────────────────────── 5. TICKER */
+  const ticker = $('#ticker');
+  let tickX = 0, tickW = 0;
+  const measureTicker = () => { tickW = ticker.firstElementChild.getBoundingClientRect().width; };
+
+  /* ────────────────────────────────── 6. RAÍL HORIZONTAL */
+  const track = $('.track'), rail = $('.rail'), strip = $('#strip');
+  const railFill = $('#railFill'), stopNow = $('#stopNow');
+  const stops = $$('.stop', strip);
+  let maxShift = 0, scrubOn = false;
+
+  function measureTrack() {
+    scrubOn = !reduce && vw > 640;
+    if (!scrubOn) { track.style.height = ''; strip.style.transform = ''; stops.forEach(s => s.classList.add('near')); return; }
+    strip.style.transform = 'translate3d(0,0,0)';
+    maxShift = Math.max(0, strip.scrollWidth - vw + 24);
+    track.style.height = (vh + maxShift) + 'px';
+  }
+  function paintTrack() {
+    if (!scrubOn) return;
+    const top = track.offsetTop;
+    const p = clamp((scrollY - top) / Math.max(1, track.offsetHeight - vh));
+    strip.style.transform = 'translate3d(' + (-p * maxShift).toFixed(2) + 'px,0,0)';
+    railFill.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+    let cur = 0;
+    stops.forEach((s, i) => {
+      const r = s.getBoundingClientRect();
+      const near = r.left < vw * .72 && r.right > vw * .06;
+      s.classList.toggle('near', near);
+      if (near) cur = i;
+    });
+    stopNow.textContent = String(cur + 1).padStart(2, '0');
+  }
+
+  /* ────────────────────────────────── 7. PROGRESO + BUCLE */
+  const pbar = $('#pbar'), pct = $('#pct');
+  const navlinks = $$('.chrome__tr .navlink');
+  const sections = navlinks.map(a => $(a.getAttribute('href')));
+  let lastY = scrollY, vel = 0;
+
+  function frame() {
+    const y = scrollY;
+    vel = lerp(vel, y - lastY, .18);
+    lastY = y;
+
+    const max = Math.max(1, doc.documentElement.scrollHeight - vh);
+    const p = clamp(y / max);
+    pbar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+    pct.textContent = String(Math.round(p * 100)).padStart(2, '0');
+
+    if (!reduce) {
+      tickX -= 0.55 + Math.min(Math.abs(vel) * .12, 7);
+      if (tickW && tickX <= -tickW) tickX += tickW;
+      ticker.style.transform = 'translate3d(' + tickX.toFixed(2) + 'px,0,0)';
+    }
+
+    paintManifest();
+    paintTrack();
+
+    let active = -1;
+    sections.forEach((s, i) => { if (s && s.getBoundingClientRect().top <= vh * .4) active = i; });
+    navlinks.forEach((a, i) => a.setAttribute('aria-current', String(i === active)));
+
+    if (fine && !reduce) {
+      cx = lerp(cx, mx, .16); cy = lerp(cy, my, .16);
+      cursor.style.transform = 'translate3d(' + cx.toFixed(2) + 'px,' + cy.toFixed(2) + 'px,0)';
+      cursorDot.style.transform = 'translate3d(' + mx.toFixed(2) + 'px,' + my.toFixed(2) + 'px,0)';
+      const pw = peek.offsetWidth || 280, ph = peek.offsetHeight || 350;
+      const tx = clamp(mx + pw * .62, pw / 2 + 14, vw - pw / 2 - 14);
+      const ty = clamp(my, ph / 2 + 14, vh - ph / 2 - 14);
+      px = lerp(px, tx, .12); py = lerp(py, ty, .12);
+      peek.style.transform = 'translate3d(' + px.toFixed(2) + 'px,' + py.toFixed(2) + 'px,0) translate(-50%,-50%) scale(' + (peekOn ? 1 : .86) + ')';
+    }
+    requestAnimationFrame(frame);
+  }
+
+  /* ────────────────────────────────── 8. CURSOR + PLACA */
+  const cursor = $('#cursor'), cursorDot = $('#cursorDot'), cursorLabel = $('#cursorLabel'), peek = $('#peek');
+  let mx = vw / 2, my = vh / 2, cx = mx, cy = my, px = mx, py = my, peekOn = false;
+
+  if (fine && !reduce) {
+    addEventListener('pointermove', (e) => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.opacity = '1'; cursorDot.style.opacity = '1';
+    }, { passive: true });
+    addEventListener('pointerdown', () => cursor.classList.add('is-active'));
+    addEventListener('pointerup', () => { if (!hoverTarget) cursor.classList.remove('is-active'); });
+    doc.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; cursorDot.style.opacity = '0'; });
+  } else {
+    cursor.remove(); cursorDot.remove();
+  }
+
+  let hoverTarget = null;
+  const hoverables = 'a, button, [data-cursor], [data-magnet]';
+  doc.addEventListener('pointerover', (e) => {
+    const t = e.target.closest(hoverables);
+    if (!t || t === hoverTarget) return;
+    hoverTarget = t;
+    cursor.classList.add('is-active');
+    cursorLabel.textContent = t.dataset.cursor || '';
+  });
+  doc.addEventListener('pointerout', (e) => {
+    if (!hoverTarget) return;
+    if (e.relatedTarget && hoverTarget.contains(e.relatedTarget)) return;
+    hoverTarget = null;
+    cursor.classList.remove('is-active');
+    cursorLabel.textContent = '';
+  });
+
+  /* ────────────────────────────────── 9. IMANTADO */
+  $$('[data-magnet]').forEach(el => {
+    if (!fine || reduce) return;
+    const inner = el.firstElementChild || el;
+    el.addEventListener('pointermove', (e) => {
+      const r = el.getBoundingClientRect();
+      const dx = (e.clientX - (r.left + r.width / 2)) * .12;
+      const dy = (e.clientY - (r.top + r.height / 2)) * .18;
+      inner.style.transform = 'translate3d(' + dx.toFixed(2) + 'px,' + dy.toFixed(2) + 'px,0)';
+    });
+    el.addEventListener('pointerleave', () => { inner.style.transform = ''; });
+  });
+
+  /* ────────────────────────────────── 10. ÍNDICE + FICHA */
+  const cases = $$('#archive .case');
+  const rows  = $$('#index .row');
+  const sheet = $('#sheet'), sheetBody = $('#sheetBody'), sheetScroll = $('#sheetScroll');
+  const sheetIdx = $('#sheetIdx'), sheetClose = $('#sheetClose');
+  const prevBtn = $('#prevCase'), nextBtn = $('#nextCase');
+  let current = -1, lastFocus = null;
+
+  rows.forEach((row, i) => {
+    row.addEventListener('click', () => openCase(i));
+    if (!fine || reduce) return;
+    row.addEventListener('pointerenter', () => {
+      const plate = $('.plate', cases[i]);
+      if (!plate) return;
+      peek.innerHTML = '';
+      peek.appendChild(plate.cloneNode(true));
+      peekOn = true; peek.classList.add('on');
+    });
+    row.addEventListener('pointerleave', () => { peekOn = false; peek.classList.remove('on'); });
+  });
+
+  function renderCase(i) {
+    current = i;
+    sheetBody.innerHTML = '';
+    sheetBody.appendChild(cases[i].cloneNode(true));
+    sheetIdx.textContent = String(i + 1).padStart(2, '0') + ' / 06';
+    prevBtn.disabled = i === 0;
+    nextBtn.disabled = i === cases.length - 1;
+    sheetScroll.scrollTop = 0;
+  }
+  function openCase(i) {
+    lastFocus = doc.activeElement;
+    renderCase(i);
+    peekOn = false; peek.classList.remove('on');
+    sheet.classList.add('is-open');
+    sheet.setAttribute('aria-hidden', 'false');
+    doc.body.classList.add('is-locked');
+    setTimeout(() => sheetClose.focus({ preventScroll: true }), 260);
+  }
+  function closeCase() {
+    sheet.classList.remove('is-open');
+    sheet.setAttribute('aria-hidden', 'true');
+    doc.body.classList.remove('is-locked');
+    if (lastFocus) lastFocus.focus({ preventScroll: true });
+    current = -1;
+  }
+  sheetClose.addEventListener('click', closeCase);
+  prevBtn.addEventListener('click', () => current > 0 && renderCase(current - 1));
+  nextBtn.addEventListener('click', () => current < cases.length - 1 && renderCase(current + 1));
+
+  addEventListener('keydown', (e) => {
+    if (current < 0) return;
+    if (e.key === 'Escape') closeCase();
+    if (e.key === 'ArrowRight' && current < cases.length - 1) renderCase(current + 1);
+    if (e.key === 'ArrowLeft'  && current > 0) renderCase(current - 1);
+    if (e.key === 'Tab') {
+      const f = $$('a[href], button:not(:disabled)', sheet).filter(el => el.offsetParent !== null);
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && doc.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && doc.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  /* ────────────────────────────────── 11. PDF */
+  $('#printBtn').addEventListener('click', () => {
+    if (current >= 0) closeCase();
+    setTimeout(() => print(), 120);
+  });
+
+  /* ────────────────────────────────── 12. ARRANQUE */
+  let rt;
+  addEventListener('resize', () => {
+    clearTimeout(rt);
+    rt = setTimeout(() => {
+      vh = innerHeight; vw = innerWidth;
+      measureTicker(); measureTrack(); lastLit = -1;
+    }, 140);
+  }, { passive: true });
+
+  const ready = () => { measureTicker(); measureTrack(); requestAnimationFrame(frame); };
+  if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(ready); else addEventListener('load', ready);
+})();
+</script>

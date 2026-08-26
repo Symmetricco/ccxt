@@ -1,0 +1,40 @@
+{
+  "recorrido": [
+    {
+      "periodo": "1995 — 1999",
+      "titulo": "Director de Arte — IMAGINA",
+      "texto": "Dirección de arte y diseño gráfico para campañas publicitarias e identidad de marca. La base del oficio."
+    },
+    {
+      "periodo": "2000 — 2011",
+      "titulo": "Director Creativo — Axó Comunicació",
+      "texto": "Fundé y dirigí una agencia de servicios plenos en Andorra, referente en su mercado, con una facturación sostenida de 1,5 M€ anuales. Premio FIAP por «Cupido», para Gala Perfumerías."
+    },
+    {
+      "periodo": "2011",
+      "titulo": "Fundo Zas Creative Lab",
+      "texto": "Vendo Axó y arranco estudio propio."
+    },
+    {
+      "periodo": "2013 — 2018",
+      "titulo": "Cuidado familiar, y trabajo en paralelo",
+      "texto": "Años marcados por el cuidado y la pérdida de mi mujer. En paralelo, mantuve colaboración con Grup Salvador y lancé Bottle Flip Challenge con Giochi Preziosi (2015–2016) — un producto propio, de la idea al lineal.",
+      "sensible": "Este periodo se presenta siempre como trabajo real, nunca como vacío a explicar con delicadeza. Ver README sección 7."
+    },
+    {
+      "periodo": "2020",
+      "titulo": "Conozco a Víctor Hernández",
+      "texto": "A través de BitRush, un emprendimiento de un tercero. Empieza una colaboración técnica que sigue hoy."
+    },
+    {
+      "periodo": "2021",
+      "titulo": "Symmetric Co.",
+      "texto": "Concepto, marca y diseño de producto para una plataforma de trading con criptoactivos, junto a Víctor."
+    },
+    {
+      "periodo": "2025 — 26",
+      "titulo": "Iris Boessenkool, Betlink, BeCloser",
+      "texto": "Tres proyectos que fijan el eje actual: marca, producto digital e IA integrada en el proceso, de principio a fin."
+    }
+  ]
+}
