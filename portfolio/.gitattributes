@@ -1,0 +1,16 @@
+# El .gitattributes de la raíz aplica "*.* text eol=lf", que casa también con
+# imágenes, PDF y tipografías y las corrompería al normalizar saltos de línea.
+# Aquí se declaran como binarias.
+*.jpg   -text
+*.jpeg  -text
+*.png   -text
+*.gif   -text
+*.webp  -text
+*.avif  -text
+*.pdf   -text
+*.woff  -text
+*.woff2 -text
+*.ttf   -text
+*.otf   -text
+*.zip   -text
+*.ico   -text

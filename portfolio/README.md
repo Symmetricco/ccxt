@@ -112,19 +112,33 @@ diseño: el impago de royalties de Bottle Flip Challenge no aparece en ningún
 material público, 2013–2018 se presenta como trabajo real, «Barcelona» siempre
 completo, y la frase de origen personal de Bottle Flip se queda.
 
+## Estado verificado
+
+Comprobado en Chromium sobre HTTP, en castellano y en inglés, a 1440 y 375 px:
+
+- Los **10 casos** de cada idioma abren su ficha correcta, con numeración
+  coincidente entre índice, kicker y placa. Sin desajustes.
+- Sin desbordamiento horizontal; el titular no se recorta en móvil.
+- Sin errores de JavaScript.
+- Único 404: `/favicon.ico`. Hay un `favicon.svg` en `assets/` sin enlazar.
+- Las tipografías se piden a Google Fonts. En `assets/fonts/` están las mismas
+  autoalojadas (subset latin, 144 KB) listas para sustituir esa petición.
+
 ## Pendiente
 
-- [ ] **Cuatro casos del brief sin contenido**: Camel Territorio música, Abertis
-      Logística, 123 Jump y Sovnd. Hacen falta sus textos y el orden definitivo
-      de los diez.
-- [ ] **Fotografías reales.** Prioridad: Bottle Flip Challenge, BeCloser, Betlink.
-- [ ] **Versión en inglés** (`site/en/index.html`) con conmutador ES/EN,
-      `hreflang` y `canonical`.
-- [ ] **Teléfono** en el bloque de contacto.
-- [ ] Año exacto de AUTEA: hoy la ficha dice «Andorra» donde iría el año.
-- [ ] Confirmar si Symmetric Co. sigue activo (aparece en el recorrido, 2021).
+- [ ] **Enlazar el favicon** (`assets/favicon.svg`) — es el único 404 del sitio.
+- [ ] **Decidir si se pasa a tipografías autoalojadas.** Ya están en
+      `assets/fonts/`; quitaría la petición a Google y aceleraría la carga.
+- [ ] **Meter `og:image`** apuntando a `assets/og-jordipeguero.jpg` (1200×630, ya
+      generada), y el resto de metadatos que falten.
+- [ ] **Descarga del CV** en cabecera y contacto, apuntando a
+      `assets/cv-jordi-peguero.pdf` (ya generado, 11 páginas).
+- [ ] **Las cuatro imágenes de Abertis sin colocar**: `abertis-render.jpg`,
+      `abertis-planta.jpg`, `abertis-lisboa.jpg`, `abertis-barcelona.jpg`.
+      Falta decidir cómo enseñar varias imágenes dentro de una ficha.
+- [ ] Más fotografía: Bottle Flip Challenge, BeCloser, Betlink son las que más
+      subirían el conjunto.
+- [ ] Teléfono en el bloque de contacto.
+- [ ] Año exacto de AUTEA.
 - [ ] El hilo de los tres saltos técnicos (visión por computador 2008, realidad
-      aumentada 2011, IA generativa 2023) todavía no se cuenta: faltan los casos
-      que lo sostienen.
-- [ ] Visto bueno al titular «Del concepto a la pieza terminada», a la entradilla
-      y al manifiesto: son nuevos, escritos para el posicionamiento neutro.
+      aumentada 2011, IA generativa 2023) todavía no se cuenta en el sitio.

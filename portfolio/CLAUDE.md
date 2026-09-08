@@ -56,10 +56,12 @@ build, sin dependencias. Las tipografías están autoalojadas en `assets/fonts/`
 portfolio/
 ├─ CLAUDE.md
 ├─ site/                  ← esto es lo que se publica. Arrastrar a Netlify/Vercel.
-│  ├─ index.html          ← el sitio entero
-│  └─ assets/
-│     ├─ fonts/           ← woff2 autoalojados + fonts.css
-│     ├─ favicon.svg
+│  ├─ index.html          ← castellano · 10 casos
+│  ├─ en/index.html       ← inglés · adaptado, no traducido
+│  └─ assets/             ← carpeta única, en la raíz
+│     ├─ camel-ar-discovr.jpg, abertis-*.jpg   (6 imágenes)
+│     ├─ fonts/           ← woff2 autoalojados + fonts.css (disponibles, sin usar)
+│     ├─ favicon.svg      ← disponible, sin enlazar
 │     ├─ og-jordipeguero.jpg
 │     └─ cv-jordi-peguero.pdf   ← generado desde el propio sitio
 ├─ og-card.html           ← plantilla de la tarjeta social
@@ -67,6 +69,20 @@ portfolio/
 ├─ build-artifact.mjs     ← genera artifact.html para previsualizar en Claude
 └─ content/               ← el contenido aprobado, tal cual llegó
 ```
+
+**Los diez casos, en orden:** Bottle Flip Challenge · Camel Territorio música ·
+BeCloser · Abertis Logística · AUTEA · 123 Jump · Betlink · Sovnd ·
+Iris Boessenkool · Grup Salvador.
+
+## Bilingüe — la regla importante
+
+Son **dos archivos completos e independientes**, sin JavaScript de intercambio ni
+librerías de i18n. El conmutador es `.langsw`, al final de `.chrome__tr` en ambos.
+`assets/` es única y está en la raíz: el inglés la referencia con `../assets/`.
+
+**Cualquier caso nuevo o cambio de contenido hay que aplicarlo en los DOS
+archivos.** Un sitio bilingüe desincronizado es peor que uno monolingüe. El texto
+en inglés lo da Jordi: está escrito, no traducido, y no se traduce aquí.
 
 ## Estructura del HTML
 
