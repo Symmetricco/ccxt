@@ -1,30 +1,42 @@
-# Portfolio — Jordi Peguero Guardiola
+# Portfolio — jordipeguero.com
 
-Portfolio/CV de una sola página. Sin dependencias, sin build: `index.html` es
-todo el sitio (HTML + CSS + JS en un solo archivo). Lo único externo son las
-tipografías de Google Fonts.
+Portfolio/CV de Jordi Peguero Guardiola. Sin dependencias y sin build:
+`site/index.html` es el sitio entero (HTML + CSS + JS en un solo archivo) y
+`site/assets/` todo lo que necesita, tipografías incluidas.
+
+**Publicar:** arrastra la carpeta `site` a `app.netlify.com/drop` (o Vercel),
+añade el dominio `jordipeguero.com` y sigue las instrucciones de DNS del panel.
+No hay paso de compilación.
+
+**Ver en local:** abre `site/index.html` en el navegador. Para que carguen las
+tipografías autoalojadas sin avisos de CORS, mejor sobre un servidor:
+
+```bash
+cd site && python3 -m http.server 8080
+```
 
 ```
 portfolio/
-├─ index.html          ← el sitio. Fuente única de todo.
-├─ artifact.html       ← generado; el mismo sitio sin <html>/<head>/<body>
-├─ build-artifact.mjs  ← node portfolio/build-artifact.mjs
-├─ assets/             ← fotos de los casos (hoy vacío)
-└─ content/            ← el contenido aprobado, tal cual llegó
-   ├─ casos.json
-   ├─ timeline.json
-   ├─ notas-editoriales.md
-   └─ brief-original.md
+├─ CLAUDE.md              ← las reglas del proyecto. Léelo antes de tocar nada.
+├─ site/                  ← esto es lo que se publica
+│  ├─ index.html
+│  └─ assets/
+│     ├─ fonts/           ← woff2 autoalojados, subset latin (144 KB)
+│     ├─ favicon.svg
+│     ├─ og-jordipeguero.jpg     ← 1200×630, generado
+│     └─ cv-jordi-peguero.pdf    ← generado desde el propio sitio
+├─ og-card.html           ← plantilla de la tarjeta social
+├─ build-assets.mjs       ← regenera la tarjeta y el PDF
+├─ build-artifact.mjs     ← regenera artifact.html (previsualización en Claude)
+└─ content/               ← el contenido aprobado, tal cual llegó
 ```
-
-Para verlo: abre `index.html` en el navegador. No hace falta servidor.
 
 ---
 
 ## Dirección de arte
 
-Registro oscuro y cinematográfico, un solo mundo visual (no hay modo claro:
-es una decisión, no un olvido).
+Registro oscuro y cinematográfico, un solo mundo visual: no hay modo claro, y es
+una decisión, no un olvido.
 
 | Token | Valor | Uso |
 |---|---|---|
@@ -34,14 +46,13 @@ es una decisión, no un olvido).
 | `--paper-dim` | `#8A817A` | texto secundario (gris sesgado al ámbar) |
 | `--ember` | `#E2932E` | acento único |
 
-- **Archivo** variable (eje de anchura 62–125) para display, en caja alta y
-  tracking negativo.
-- **Instrument Sans** para cuerpo.
-- **DM Mono** para metadatos, índices y etiquetas.
+**Archivo** variable (eje de anchura 62–125) para display, en caja alta y
+tracking negativo · **Instrument Sans** para cuerpo · **DM Mono** para
+metadatos, índices y etiquetas. Autoalojadas: ninguna petición a terceros.
 
-El acento ámbar aparece en un sitio por pantalla: el estado «Disponible», la
-palabra *interfaz* del titular, el número de la fila activa, el subrayado de
-«Hablemos». Si se reparte más, deja de significar nada.
+El ámbar aparece una vez por pantalla —el punto de «Disponible», la palabra
+*terminada* del titular, el número de la fila activa, el subrayado de
+«Hablemos»—. Si se reparte más, deja de significar nada.
 
 ## Movimiento
 
@@ -50,68 +61,70 @@ Todo a mano, sin librerías: contador de carga, revelados con
 scroll, ticker con inercia, raíl horizontal del recorrido scrubbeado por el
 scroll vertical, cursor propio con etiqueta y placas que siguen al puntero.
 
-`prefers-reduced-motion` desactiva todo y deja el contenido estático. Sin
-JavaScript el sitio sigue siendo legible entero (ver el `<noscript>`).
+`prefers-reduced-motion` lo desactiva todo. Sin JavaScript el sitio sigue siendo
+legible entero (ver el `<noscript>`).
 
 ---
 
 ## Cómo se edita
 
-**Textos** — están en el HTML, no en JSON. Se editan donde se leen. `content/`
+**Textos** — están en el HTML, no en JSON: se editan donde se leen. `content/`
 guarda el original aprobado como referencia; si cambias un texto en el sitio,
-cámbialo también ahí para que no se desincronicen.
+cámbialo también ahí.
 
 **Fotos de los casos** — hoy los seis casos usan placas generadas con CSS
-(gradientes por caso, más el trazo real de AUTEA en SVG), no fotos. Para poner
-una imagen real basta añadir la variable `--img` a la placa del caso, en el
-bloque `<div class="archive">`:
+(gradientes propios de cada caso, más el trazo real de AUTEA en SVG). Para poner
+una imagen real, añade `--img` a la placa del caso en el bloque `.archive`:
 
 ```html
 <div class="plate plate--becloser" style="--img:url('assets/becloser-01.jpg')">
 ```
 
 La foto entra como capa superior y tapa la placa generada, tanto en la ficha
-como en la vista previa que sigue al cursor. Prioridad según el brief:
-**BeCloser y Betlink** primero.
+como en la vista previa que sigue al cursor.
 
-**Añadir un caso** — dos sitios: la fila en `#index` y el `<article class="case">`
-en `#archive`, en el mismo orden. El JS los empareja por posición.
+**Añadir o reordenar casos** — dos sitios, en el mismo orden: la fila en
+`#index` y el `<article class="case">` en `#archive`. El JS los empareja **por
+posición**, así que hay que renumerar `data-case`, `.row__num`,
+`.sheet__kicker` y `.plate__idx`, y comprobar que cada fila abre su ficha.
 
-## El PDF
+## El PDF y la tarjeta social
 
-No hay generador aparte: el sitio **es** el PDF. `Guardar como PDF` en el pie
-(o `Cmd/Ctrl + P`) aplica una hoja de impresión que reorganiza la misma página
-como dossier A4 de 8 páginas — CV en la primera, las seis fichas completas
-detrás. Una sola fuente, imposible que se desincronicen.
+No hay maquetación aparte: el sitio **es** el PDF. `@media print` reorganiza la
+misma página como dossier A4 —CV en la primera hoja, las seis fichas detrás—.
+El botón «Guardar como PDF» del pie lo imprime en vivo; `build-assets.mjs` lo
+deja escrito en `assets/cv-jordi-peguero.pdf`, que es a donde apuntan los
+enlaces de descarga.
 
-Para generarlo desde línea de comandos con las tipografías reales:
-
-```js
-await page.pdf({ path: 'portfolio-jordi-peguero.pdf', format: 'A4',
-                 margin: { top:'16mm', bottom:'16mm', left:'15mm', right:'15mm' } });
+```bash
+node build-assets.mjs      # regenera og-jordipeguero.jpg y cv-jordi-peguero.pdf
 ```
+
+**Tras cualquier cambio de contenido hay que regenerar el PDF.** Es su única
+fuente y si no, se desincronizan.
 
 ---
 
 ## Reglas editoriales — leer antes de tocar el texto
 
-De `content/notas-editoriales.md`. No son decisiones de diseño:
-
-1. **El impago de royalties de Bottle Flip Challenge no aparece en ningún
-   material público.** No está en el sitio ni en el PDF. No añadirlo sin
-   confirmación expresa de Jordi.
-2. **2013–2018 se presenta como trabajo real**, no como hueco a justificar.
-3. **«Barcelona» siempre escrito completo**, nunca «BCN».
-4. **La frase de origen personal de Bottle Flip Challenge se queda** tal cual,
-   como cita destacada en su ficha.
+Están en `CLAUDE.md` y en `content/notas-editoriales.md`. No son decisiones de
+diseño: el impago de royalties de Bottle Flip Challenge no aparece en ningún
+material público, 2013–2018 se presenta como trabajo real, «Barcelona» siempre
+completo, y la frase de origen personal de Bottle Flip se queda.
 
 ## Pendiente
 
-- [ ] Fotografías reales de BeCloser y Betlink (lo que más subiría el conjunto).
-- [ ] Año exacto de AUTEA — hoy la ficha dice «Andorra» donde iría el año,
-      porque el año no está confirmado.
-- [ ] Identidad de Zas Lab: decidir si el portfolio hereda su marca o se queda
-      como identidad personal aparte. Hoy es identidad personal.
+- [ ] **Cuatro casos del brief sin contenido**: Camel Territorio música, Abertis
+      Logística, 123 Jump y Sovnd. Hacen falta sus textos y el orden definitivo
+      de los diez.
+- [ ] **Fotografías reales.** Prioridad: Bottle Flip Challenge, BeCloser, Betlink.
+- [ ] **Versión en inglés** (`site/en/index.html`) con conmutador ES/EN,
+      `hreflang` y `canonical`.
+- [ ] **Teléfono** en el bloque de contacto.
+- [ ] Año exacto de AUTEA: hoy la ficha dice «Andorra» donde iría el año.
 - [ ] Confirmar si Symmetric Co. sigue activo (aparece en el recorrido, 2021).
-- [ ] Texto del manifiesto («Llevo veinticinco años…») y el «Acerca de»: son
-      nuevos, escritos para este rediseño. Pendientes del visto bueno de Jordi.
+- [ ] El hilo de los tres saltos técnicos (visión por computador 2008, realidad
+      aumentada 2011, IA generativa 2023) todavía no se cuenta: faltan los casos
+      que lo sostienen.
+- [ ] Visto bueno al titular «Del concepto a la pieza terminada», a la entradilla
+      y al manifiesto: son nuevos, escritos para el posicionamiento neutro.

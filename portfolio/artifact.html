@@ -1,5 +1,7 @@
 <title>Jordi Peguero</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400..700&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=DM+Mono&family=Instrument+Sans:wght@400..700&display=swap">
 <style>
 /* ============================================================
    JORDI PEGUERO — PORTFOLIO
@@ -219,6 +221,8 @@ body.is-locked{overflow:hidden}
 @media (max-width:760px){
   .chrome{padding:.85rem}
   .chrome__tr .navlink{display:none}
+  .chrome__tr .navlink[data-cv]{display:inline-block}  /* la descarga del CV se queda */
+  .chrome__tr .avail{display:none}                     /* el punto basta como estado */
   .chrome__bl .sep,.chrome__bl .loc{display:none}
   .mark span{display:none}
 }
@@ -280,7 +284,7 @@ body.is-locked{overflow:hidden}
   border-bottom:1px solid var(--line);
   margin-bottom:clamp(1.6rem,4vw,3rem);
 }
-.hero__title{margin-bottom:clamp(2rem,5vw,3.4rem)}
+.hero__title{margin-bottom:clamp(1.6rem,4vw,2.8rem);font-size:clamp(2.5rem,9.2vw,9.2rem)}
 .hero__title .ln{display:block;overflow:hidden}
 .hero__title .ln > span{display:block;transform:translate3d(0,102%,0)}
 
@@ -683,7 +687,7 @@ body.is-locked{overflow:hidden}
   padding-top:clamp(1.5rem,3vw,2.2rem);
   border-top:1px solid var(--line);
 }
-@media (min-width:760px){.contact__grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:760px){.contact__grid{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}}
 .contact__cell{display:grid;gap:.55rem;align-content:start}
 .contact__cell a{
   font-family:var(--display);font-weight:600;font-stretch:104%;
@@ -803,6 +807,7 @@ body.is-locked{overflow:hidden}
   .cap{page-break-inside:avoid;padding-block:2.5mm}
   .contact{padding-block:4mm 0}
   .contact__big .d--xl{font-size:20pt}
+  [data-cv]{display:none !important}
   a[href^="http"]::after,a[href^="mailto"]::after{content:" (" attr(href) ")";font-family:var(--mono);font-size:6.6pt;color:#666;word-break:break-all}
   .navlink::after,.contact__cell a::after,.contact__big::after{display:none}
 }
@@ -838,8 +843,9 @@ body.is-locked{overflow:hidden}
     <a class="mono navlink" href="#trabajo">Trabajo</a>
     <a class="mono navlink" href="#recorrido">Recorrido</a>
     <a class="mono navlink" href="#contacto">Contacto</a>
+    <a class="mono navlink" href="#" data-print data-cv data-cursor="Descargar">CV ↓</a>
     <span class="dot" aria-hidden="true"></span>
-    <span class="mono">Disponible</span>
+    <span class="mono avail">Disponible</span>
   </nav>
   <div class="chrome__bl">
     <span class="mono dim loc">Girona · Barcelona</span>
@@ -860,17 +866,18 @@ body.is-locked{overflow:hidden}
   <div class="wrap">
     <div class="hero__eyebrow">
       <span class="mono">Jordi Peguero Guardiola</span>
-      <span class="mono dim">Director Creativo · Marca y Producto Digital</span>
+      <span class="mono dim">Director Creativo · Marca, campaña y producto</span>
       <span class="mono faint" style="margin-left:auto">Est. 1995</span>
     </div>
 
     <h1 class="d d--xl hero__title" id="heroTitle">
       <span class="ln"><span>Del concepto</span></span>
-      <span class="ln"><span>a la <em class="ember" style="font-style:normal">interfaz</em></span></span>
+      <span class="ln"><span>a la pieza</span></span>
+      <span class="ln"><span class="ember">terminada</span></span>
     </h1>
 
     <div class="hero__foot">
-      <p class="lede rv-self">25 años dirigiendo identidad, campaña y producto — hoy centrado en llevar SaaS desde el concepto hasta la interfaz, con IA integrada en el proceso de principio a fin.</p>
+      <p class="lede rv-self">25 años dirigiendo identidad, campaña y producto. De la marca de un grupo industrial a un juguete propio que llegó al lineal europeo, y de ahí a la interfaz de un SaaS.</p>
 
       <dl class="facts rv-self">
         <div class="fact"><dt class="mono faint">Base</dt><dd>Girona · Barcelona</dd></div>
@@ -895,7 +902,7 @@ body.is-locked{overflow:hidden}
 <!-- ══ MANIFIESTO ══ -->
 <section class="sec manifest" id="acerca">
   <div class="wrap">
-    <p class="manifest__body" id="manifest">Llevo veinticinco años dirigiendo marca, campaña y producto. Hoy trabajo sobre un solo eje: llevar un SaaS del concepto a la interfaz, con IA integrada en el proceso de principio a fin. Diseño la identidad, el sistema y la pantalla — y me quedo con quien lo construye hasta que funciona. Busco incorporarme a un equipo que necesite esa figura dentro, no facturar un proyecto desde fuera.</p>
+    <p class="manifest__body" id="manifest">Llevo veinticinco años dirigiendo marca, campaña y producto. He hecho identidad para un grupo industrial, un juguete propio de la idea al molde y la interfaz de un SaaS — y en los tres el trabajo fue el mismo: entender el problema, decidir, y quedarme hasta que la pieza existe. Busco incorporarme a un equipo que necesite esa figura dentro, no facturar un proyecto desde fuera.</p>
 
     <div class="manifest__foot">
       <p class="mono faint">Acerca de<br>—<br>001</p>
@@ -1160,12 +1167,16 @@ body.is-locked{overflow:hidden}
         <span class="mono faint">Estudio</span>
         <a href="https://zascreativelab.com" target="_blank" rel="noopener">zascreativelab.com</a>
       </div>
+      <div class="contact__cell rv-self">
+        <span class="mono faint">Currículum</span>
+        <a href="#" data-print data-cv data-cursor="Descargar">Descargar CV (PDF)</a>
+      </div>
     </div>
 
     <div class="foot">
       <span class="mono faint">© 2026 Jordi Peguero Guardiola</span>
       <span class="mono faint">Girona · Barcelona · Remoto o híbrido</span>
-      <button class="mono navlink" id="printBtn" data-cursor="PDF">Guardar como PDF</button>
+      <button class="mono navlink" data-print data-cursor="PDF">Guardar como PDF</button>
     </div>
   </div>
 </section>
@@ -1413,7 +1424,7 @@ body.is-locked{overflow:hidden}
 
   /* ────────────────────────────────── 4. MANIFIESTO palabra a palabra */
   const man = $('#manifest');
-  const KEY = ['concepto', 'interfaz', 'incorporarme'];
+  const KEY = ['problema', 'decidir', 'pieza'];
   const words = [];
   {
     const raw = man.textContent.trim().split(/\s+/);
@@ -1477,7 +1488,8 @@ body.is-locked{overflow:hidden}
 
   /* ────────────────────────────────── 7. PROGRESO + BUCLE */
   const pbar = $('#pbar'), pct = $('#pct');
-  const navlinks = $$('.chrome__tr .navlink');
+  // solo las anclas internas marcan sección activa: el enlace de descarga del CV no
+  const navlinks = $$('.chrome__tr .navlink[href^="#"]');
   const sections = navlinks.map(a => $(a.getAttribute('href')));
   let lastY = scrollY, vel = 0;
 
@@ -1628,10 +1640,11 @@ body.is-locked{overflow:hidden}
   });
 
   /* ────────────────────────────────── 11. PDF */
-  $('#printBtn').addEventListener('click', () => {
+  $$('[data-print]').forEach(el => el.addEventListener('click', (e) => {
+    e.preventDefault();
     if (current >= 0) closeCase();
     setTimeout(() => print(), 120);
-  });
+  }));
 
   /* ────────────────────────────────── 12. ARRANQUE */
   let rt;
